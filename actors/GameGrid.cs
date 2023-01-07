@@ -74,6 +74,7 @@ public class GameGrid : Spatial
                 if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
                 if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
                 if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
+                if (PlaceableSelected == Placables.PlantFoodLeaf) PlacePlantAt(picked.Value, "res://actors/plants/FoodLeaf.tscn");
             }
         }
     }
@@ -188,6 +189,7 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_1")) PlaceableSelected = Placables.Pipe;
         if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;
         if (@event.IsActionPressed("select_item_3")) PlaceableSelected = Placables.Outlet;
+        if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.PlantFoodLeaf;
     }
 
     public IntVec2? VectorToTile(Vector3? v3)
@@ -420,5 +422,10 @@ public class GameGrid : Spatial
     public bool IsInBounds(IntVec2 pos)
     {
         return pos.x >= 0 && pos.y >= 0 && pos.x < WIDTH && pos.y < HEIGHT;
+    }
+
+    public bool PlacePlantAt(IntVec2 pos, string plant)
+    {
+
     }
 }

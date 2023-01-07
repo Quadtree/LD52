@@ -12,6 +12,8 @@ public class GameGrid : Spatial
 
     bool[,] TubWalls = new bool[WIDTH, HEIGHT];
 
+    int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
+
     public override void _Ready()
     {
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
@@ -37,6 +39,13 @@ public class GameGrid : Spatial
                 }
             }
         }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+
+        
     }
 
     public override void _UnhandledInput(InputEvent @event)

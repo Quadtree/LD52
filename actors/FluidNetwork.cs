@@ -16,10 +16,11 @@ public class FluidNetwork
 
     public void Update()
     {
-        var output = new int[NUM_FLUID_TYPES];
-
         foreach (var pump in Pumps)
         {
+            var outlet = Util.Choice(Outlets.Where(it => Grid.Fluid[it.x, it.y, (int)FluidType.Red] + Grid.Fluid[it.x, it.y, (int)FluidType.Green] + Grid.Fluid[it.x, it.y, (int)FluidType.Blue] < 900_000));
+            if (outlet == null) return;
+
             var pumpedByThisPump = new int[NUM_FLUID_TYPES];
             var totalPumpedByThis = 0;
 
@@ -41,10 +42,13 @@ public class FluidNetwork
             {
                 var actualPumpedAmount = pumpedByThisPump[fluidType] * ratioMilis / 1000;
                 Grid.Fluid[pump.x, pump.y, fluidType] -= actualPumpedAmount;
-                output[fluidType] += actualPumpedAmount;
+
+                Grid.Fluid[outlet.x, outlet.y, fluidType] += actualPumpedAmount;
+
+                //output[fluidType] += actualPumpedAmount;
             }
         }
 
-        GD.Print($"output={String.Join(",", output)}");
+        //GD.Print($"output={String.Join(",", output)}");
     }
 }

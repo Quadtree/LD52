@@ -62,6 +62,12 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
+        {
+            var mmi = this.FindChildByName<MultiMeshInstance>("FilterWalls");
+            mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
+            mmi.Multimesh.VisibleInstanceCount = 0;
+        }
+
         Level = new Level2();
 
         Level.CreateLevel(this);
@@ -80,6 +86,7 @@ public class GameGrid : Spatial
                 if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
                 if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
                 if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
+                if (PlaceableSelected == Placables.Filter && !FilterWalls[picked.Value.x, picked.Value.y]) AddFilterWall(picked.Value);
                 if (PlaceableSelected == Placables.Plant0) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[0]);
                 if (PlaceableSelected == Placables.Plant1) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[1]);
                 if (PlaceableSelected == Placables.Plant2) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[2]);
@@ -232,6 +239,7 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.Plant0;
         if (@event.IsActionPressed("select_item_5")) PlaceableSelected = Placables.Plant1;
         if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
+        if (@event.IsActionPressed("select_filter")) PlaceableSelected = Placables.Filter;
 
         if (@event.IsActionPressed("deselect_or_destroy"))
         {

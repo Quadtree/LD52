@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -23,6 +23,18 @@ size = Vector3( 1, 1, 1 )
 color_format = 2
 transform_format = 1
 mesh = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.388235, 0.235294, 0.235294, 1 )
+
+[sub_resource type="CubeMesh" id=17]
+material = SubResource( 16 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="MultiMesh" id=18]
+color_format = 2
+transform_format = 1
+mesh = SubResource( 17 )
 
 [sub_resource type="SphereMesh" id=11]
 radius = 0.25
@@ -78,6 +90,9 @@ multimesh = SubResource( 2 )
 
 [node name="TubWalls" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 8 )
+
+[node name="FilterWalls" type="MultiMeshInstance" parent="GameGrid"]
+multimesh = SubResource( 18 )
 
 [node name="PipeCenters" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 10 )

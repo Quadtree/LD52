@@ -4,6 +4,7 @@ public enum Placables
     Pipe,
     Outlet,
     Pump,
+    Filter,
 
     Plant0,
     Plant1,

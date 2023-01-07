@@ -85,13 +85,20 @@ public class GameGrid : Spatial
             {
                 var totalFluid = Fluid[x, y, 0] + Fluid[x, y, 1] + Fluid[x, y, 2];
 
-                var transform = new Transform(new Basis(
-                    new Vector3(1, 0, 0),
-                    new Vector3(0, totalFluid / 1_000_000f, 0),
-                    new Vector3(0, 0, 1)
-                ), TileToVector(new IntVec2(x, y)));
+                if (totalFluid > 0)
+                {
+                    var transform = new Transform(new Basis(
+                        new Vector3(1, 0, 0),
+                        new Vector3(0, totalFluid / 1_000_000f, 0),
+                        new Vector3(0, 0, 1)
+                    ), TileToVector(new IntVec2(x, y)));
 
-                lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
+                    lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
+                }
+                else
+                {
+                    lq.Multimesh.SetInstanceColor(GetLiquidInstanceId(new IntVec2(x, y)), new Color(1, 1, 1, 0));
+                }
             }
         }
     }

@@ -64,16 +64,16 @@ public class GameGrid : Spatial
         if (v3 == null) return null;
 
         return new IntVec2(
-            Mathf.RoundToInt(v3.Value.x + (WIDTH / 2)),
-            Mathf.RoundToInt(v3.Value.y + (HEIGHT / 2))
+            Mathf.RoundToInt(v3.Value.x + (WIDTH / 2) - 0.5f),
+            Mathf.RoundToInt(v3.Value.y + (HEIGHT / 2) - 0.5f)
         );
     }
 
     public Vector3 TileToVector(IntVec2 tile)
     {
         return new Vector3(
-            tile.x - (WIDTH / 2),
-            tile.y - (HEIGHT / 2),
+            tile.x - (WIDTH / 2) + 0.5f,
+            tile.y - (HEIGHT / 2) + 0.5f,
             0
         );
     }

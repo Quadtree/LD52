@@ -60,6 +60,14 @@ shape = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 15.0402 )
+near = 10.0
+far = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.4571, 1.6124 )
+light_energy = 2.809
+shadow_enabled = true
+spot_range = 30.0

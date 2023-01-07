@@ -389,6 +389,15 @@ public class GameGrid : Spatial
         }
     }
 
+    public void DeleteFilter(IntVec2 pos)
+    {
+        if (FilterWalls[pos.x, pos.y])
+        {
+            FilterWalls[pos.x, pos.y] = false;
+            RemoveFromMultimesh("FilterWalls", TileToVector(pos));
+        }
+    }
+
     public void DeleteAll(IntVec2 pos)
     {
         GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos)?.QueueFree();
@@ -397,6 +406,7 @@ public class GameGrid : Spatial
         DeletePump(pos);
         DeleteOutlet(pos);
         DeleteWall(pos);
+        DeleteFilter(pos);
     }
 
     private void AddToMultimesh(string subName, Vector3 pos)

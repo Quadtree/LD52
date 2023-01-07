@@ -16,7 +16,7 @@ public class GameGrid : Spatial
     {
         if (Placing && PlaceableSelected != null)
         {
-            var picked = Picking.PickPointAtCursor(this);
+            var picked = VectorToTile(Picking.PickPointAtCursor(this));
             GD.Print(picked);
 
             if (PlaceableSelected == Placables.TubWall)
@@ -44,5 +44,15 @@ public class GameGrid : Spatial
         {
             PlaceableSelected = Placables.TubWall;
         }
+    }
+
+    public IntVec2? VectorToTile(Vector3? v3)
+    {
+        if (v3 == null) return null;
+
+        return new IntVec2(
+            Mathf.RoundToInt(v3.Value.x + 8),
+            Mathf.RoundToInt(v3.Value.y + 8)
+        );
     }
 }

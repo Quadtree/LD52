@@ -4,6 +4,21 @@ public class Level
     {
 
     }
+
+    public void CreateFluidTub(GameGrid grid, IntVec2 bottomLeft, int width)
+    {
+        grid.AddTubWall(bottomLeft);
+        grid.AddTubWall(bottomLeft + new IntVec2(0, 1));
+
+        for (var i = 0; i < width; ++i)
+        {
+            grid.AddFluid(bottomLeft + new IntVec2(i + 1, 1), FluidType.Green, 1_000_000);
+            grid.AddTubWall(bottomLeft + new IntVec2(i + 1, 0));
+        }
+
+        grid.AddTubWall(bottomLeft + new IntVec2(width + 1, 0));
+        grid.AddTubWall(bottomLeft + new IntVec2(width + 1, 1));
+    }
 }
 
 public class Level1 : Level
@@ -12,12 +27,6 @@ public class Level1 : Level
     {
         base.CreateLevel(grid);
 
-        grid.AddTubWall(new IntVec2())
-
-        for (var i = 0; i < 4; ++i)
-        {
-            grid.AddFluid(new IntVec2(10 + i, 14), FluidType.Green, 1_000_000);
-        }
-
+        CreateFluidTub(grid, new IntVec2(10, 13), 3);
     }
 }

@@ -64,7 +64,7 @@ public class Plant : Spatial
     {
         Grid = gg;
         Pos = pos;
-        Scale = Vector3.Zero;
+        Scale = Vector3.One * .25f;
         this.SetGlobalLocation(gg.TileToVector(pos));
     }
 

@@ -61,7 +61,7 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
-        Level = new Level1();
+        Level = new Level2();
 
         Level.CreateLevel(this);
     }
@@ -79,7 +79,9 @@ public class GameGrid : Spatial
                 if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
                 if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
                 if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
-                if (PlaceableSelected == Placables.PlantFoodLeaf) PlacePlantAt(picked.Value, "res://actors/plants/FoodLeaf.tscn");
+                if (PlaceableSelected == Placables.Plant0) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[0]);
+                if (PlaceableSelected == Placables.Plant1) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[1]);
+                if (PlaceableSelected == Placables.Plant2) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[2]);
             }
         }
 
@@ -226,7 +228,9 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_1")) PlaceableSelected = Placables.Pipe;
         if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;
         if (@event.IsActionPressed("select_item_3")) PlaceableSelected = Placables.Outlet;
-        if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.PlantFoodLeaf;
+        if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.Plant0;
+        if (@event.IsActionPressed("select_item_5")) PlaceableSelected = Placables.Plant1;
+        if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
 
         if (@event.IsActionPressed("deselect_or_destroy"))
         {
@@ -513,6 +517,8 @@ public class GameGrid : Spatial
         var vecPos = TileToVector(pos);
 
         if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos) != null) return false;
+
+        GD.Print($"Placing plant {plant} at {pos}");
 
         var plantInstance = GD.Load<PackedScene>(plant).Instance<Plant>();
         GetTree().CurrentScene.AddChild(plantInstance);

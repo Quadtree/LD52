@@ -14,6 +14,7 @@ height = 1.0
 [node name="Plant" instance=ExtResource( 1 )]
 GreenUsedPerTick = 200
 BlueUsedPerTick = 200
+RedLiquidProducedPerTick = 70
 MaxGrowth = 1200
 
 [node name="MeshInstance" parent="." index="0"]

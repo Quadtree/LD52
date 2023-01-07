@@ -5,5 +5,7 @@ public enum Placables
     Outlet,
     Pump,
 
-    PlantFoodLeaf,
+    Plant0,
+    Plant1,
+    Plant2,
 }

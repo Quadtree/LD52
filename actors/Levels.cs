@@ -114,8 +114,6 @@ public class Level4 : Level
     {
         base.CreateLevel(grid);
 
-        CreateFluidTub(grid, new IntVec2(10, 1), 1, FluidType.Green);
-
         CreateFluidTub(grid, new IntVec2(5, 1), 4, FluidType.Blue);
 
         CreateFluidTub(grid, new IntVec2(9, 7), 5, FluidType.Red);

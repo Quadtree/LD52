@@ -14,7 +14,9 @@ public class GameGrid : Spatial
 
     public override void _Ready()
     {
-
+        var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
+        tw.Multimesh.InstanceCount = WIDTH * HEIGHT;
+        tw.Multimesh.VisibleInstanceCount = 0;
     }
 
     public override void _Process(float delta)
@@ -22,7 +24,7 @@ public class GameGrid : Spatial
         if (Placing && PlaceableSelected != null)
         {
             var picked = VectorToTile(Picking.PickPointAtCursor(this));
-            GD.Print(picked);
+            //GD.Print(picked);
 
             if (picked != null)
             {
@@ -30,8 +32,7 @@ public class GameGrid : Spatial
                 {
                     if (!TubWalls[picked.Value.x, picked.Value.y])
                     {
-                        TubWalls[picked.Value.x, picked.Value.y] = true;
-
+                        AddTubWall(picked.Value);
                     }
                 }
             }
@@ -66,5 +67,27 @@ public class GameGrid : Spatial
             Mathf.RoundToInt(v3.Value.x + (WIDTH / 2)),
             Mathf.RoundToInt(v3.Value.y + (HEIGHT / 2))
         );
+    }
+
+    public Vector3 TileToVector(IntVec2 tile)
+    {
+        return new Vector3(
+            tile.x - (WIDTH / 2),
+            tile.y - (HEIGHT / 2),
+            0
+        );
+    }
+
+    private void AddTubWall(IntVec2 pos)
+    {
+        GD.Print($"Adding tub wall at {pos}");
+
+        TubWalls[pos.x, pos.y] = true;
+
+        var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
+        var nextInstanceId = tw.Multimesh.VisibleInstanceCount;
+        tw.Multimesh.VisibleInstanceCount++;
+
+        tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, TileToVector(pos)));
     }
 }

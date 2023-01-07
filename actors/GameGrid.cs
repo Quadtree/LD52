@@ -243,7 +243,7 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.Plant0;
         if (@event.IsActionPressed("select_item_5")) PlaceableSelected = Placables.Plant1;
         if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
-        if (@event.IsActionPressed("select_filter")) PlaceableSelected = Placables.Filter;
+        if (@event.IsActionPressed("select_filter") && Level.AllowFilter) PlaceableSelected = Placables.Filter;
 
         if (@event.IsActionPressed("deselect_or_destroy"))
         {

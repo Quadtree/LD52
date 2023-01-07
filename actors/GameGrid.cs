@@ -87,7 +87,7 @@ public class GameGrid : Spatial
 
                 var transform = new Transform(new Basis(
                     new Vector3(1, 0, 0),
-                    new Vector3(0, 1, 0),
+                    new Vector3(0, totalFluid / 1_000_000f, 0),
                     new Vector3(0, 0, 1)
                 ), TileToVector(new IntVec2(x, y)));
 

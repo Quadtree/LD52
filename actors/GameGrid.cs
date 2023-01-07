@@ -78,7 +78,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        //Fluid[8, 15, (int)FluidType.Blue] += 10_000;
+        
 
         for (var y = 0; y < HEIGHT; ++y)
         {

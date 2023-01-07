@@ -87,7 +87,7 @@ public class Level3 : Level
 
         CreateFluidTub(grid, new IntVec2(10, 1), 3, FluidType.Green);
 
-        CreateFluidTub(grid, new IntVec2(1, 1), 7, FluidType.Blue);
+        CreateFluidTub(grid, new IntVec2(6, 1), 2, FluidType.Blue);
     }
 
     public override Dictionary<Plant.EYieldType, int> Requirements
@@ -95,12 +95,15 @@ public class Level3 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.BitterLeaf] = 5;
+            ret[Plant.EYieldType.FoodLeaf] = 5;
+            ret[Plant.EYieldType.BitterLeaf] = 10;
             return ret;
         }
     }
 
-    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/BitterLeaf.tscn" };
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn", "res://actors/plants/BitterLeaf.tscn" };
+
+    public override bool AllowFilter => true;
 
     public override string Description => "The captain wants some bitterleaf to spice the new pie his chef is working on. Unfortunately, bittlerleaf produces poisonous red, so if left unchecked it will stop growing due to the poison. We'll need to flush the trays regularly.";
 }

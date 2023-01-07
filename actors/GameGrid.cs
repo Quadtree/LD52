@@ -68,7 +68,7 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
-        Level = new Level2();
+        Level = new Level3();
 
         Level.CreateLevel(this);
     }

@@ -199,7 +199,11 @@ public class GameGrid : Spatial
 
                     lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
 
-                    lq.Multimesh.SetInstanceColor(GetLiquidInstanceId(new IntVec2(x, y)), new Color(Fluid[x, y, (int)FluidType.Red] / (float)totalFluid, Fluid[x, y, (int)FluidType.Green] / (float)totalFluid, Fluid[x, y, (int)FluidType.Blue] / (float)totalFluid, 0.5f));
+                    lq.Multimesh.SetInstanceColor(GetLiquidInstanceId(new IntVec2(x, y)), new Color(
+                        (Fluid[x, y, (int)FluidType.Red] * 10) / (float)totalFluid,
+                        Fluid[x, y, (int)FluidType.Green] / (float)totalFluid,
+                        Fluid[x, y, (int)FluidType.Blue] / (float)totalFluid,
+                    0.5f));
                 }
                 else
                 {

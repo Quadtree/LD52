@@ -1,6 +1,6 @@
-import { S3Client as s3 } from '@aws-sdk/client-s3';
+import * as AWS from '@aws-sdk/client-s3';
 
-//const s3 = new aws.S3({apiVersion: "2006-03-01"});
+const s3 = new AWS.S3({ region: "us-west-2" });
 
 const BUCKET_NAME = "ld52-scores982347347834";
 const KEY_NAME = "scores.json";
@@ -19,6 +19,8 @@ export const handler = async (event) => {
         levelScores: {}
     };
 
+    console.log(s3.getObject);
+
     try {
         object = await s3.getObject({
             Bucket: BUCKET_NAME,
@@ -30,7 +32,7 @@ export const handler = async (event) => {
 
     object.levelScores[incomingData.level].push(incomingData);
 
-    await s3.upload({
+    await s3.putObject({
         Bucket: BUCKET_NAME,
         Key: KEY_NAME,
         Body: JSON.stringify(object),

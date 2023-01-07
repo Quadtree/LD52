@@ -18,6 +18,8 @@ public class Plant : Spatial
     [Export]
     public EYieldType YieldType;
 
+    public bool Picked;
+
     public GameGrid Grid;
 
     public IntVec2 Pos;
@@ -59,6 +61,15 @@ public class Plant : Spatial
 
     public void Pick()
     {
+        if (Picked) return;
 
+        Picked = true;
+        QueueFree();
+
+        if (!Grid.Score.ContainsKey(YieldType)) Grid.Score[YieldType] = 0;
+
+        Grid.Score[YieldType]++;
+
+        GD.Print($"score={string.Join(",", Grid.Score)}");
     }
 }

@@ -180,8 +180,9 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("place_item"))
         {
             var picked = Picking.PickObjectAtCursor(this);
-            if (picked != null && picked.GetParent<Plant>() != null && picked.GetParent<Plant>().IsRipe)
+            if (picked != null && picked.GetParent() is Plant && picked.GetParent<Plant>().IsRipe)
             {
+                GD.Print($"Picking plant {picked}");
                 picked.GetParent<Plant>().Pick();
             }
             else

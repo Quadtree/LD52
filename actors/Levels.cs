@@ -136,3 +136,61 @@ public class Level4 : Level
 
     public override string Description => "We're out of green, but luckily, we've discovered a new plant called Muckroot that consumes red and produces green.";
 }
+
+public class Level5 : Level
+{
+    public override void CreateLevel(GameGrid grid)
+    {
+        base.CreateLevel(grid);
+
+        CreateFluidTub(grid, new IntVec2(5, 1), 4, FluidType.Blue);
+
+        CreateFluidTub(grid, new IntVec2(10, 1), 1, FluidType.Green);
+
+        CreateFluidTub(grid, new IntVec2(9, 7), 5, FluidType.Red);
+    }
+
+    public override Dictionary<Plant.EYieldType, int> Requirements
+    {
+        get
+        {
+            var ret = new Dictionary<Plant.EYieldType, int>();
+            ret[Plant.EYieldType.BitterLeaf] = 20;
+            // 15 is possible...
+            return ret;
+        }
+    }
+
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/BitterLeaf.tscn", "res://actors/plants/MuckRoot.tscn" };
+
+    public override bool AllowFilter => true;
+
+    public override string Description => "We've managed to obtain a bit more green. Let's make as much Bitterleaf for the new spiced lattes as we can.";
+}
+
+public class Level6 : Level
+{
+    public override void CreateLevel(GameGrid grid)
+    {
+        base.CreateLevel(grid);
+
+        CreateFluidTub(grid, new IntVec2(5, 1), 9, FluidType.Blue);
+    }
+
+    public override Dictionary<Plant.EYieldType, int> Requirements
+    {
+        get
+        {
+            var ret = new Dictionary<Plant.EYieldType, int>();
+            ret[Plant.EYieldType.FoodLeaf] = 20;
+            // 15 is possible...
+            return ret;
+        }
+    }
+
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/BitterLeaf.tscn", "res://actors/plants/MuckRoot.tscn", "res://actors/plants/GasLeaf.tscn" };
+
+    public override bool AllowFilter => true;
+
+    public override string Description => "We're out of everything! Luckily, we just developed a new plant called Gasleaf that can somehow convert water into red gas. We'll have to use that to create more bitterleaf for the captain's new spicy stew.";
+}

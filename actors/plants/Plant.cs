@@ -19,6 +19,9 @@ public class Plant : Spatial
     public int GreenLiquidProducedPerTick;
 
     [Export]
+    public int RedGasProducedPerTick;
+
+    [Export]
     public int MaxRedTolerancePerMili;
 
     [Export]
@@ -66,6 +69,8 @@ public class Plant : Spatial
 
             // water is always recycled into the air
             Grid.GasLevels[(int)FluidType.Blue] += BlueUsedPerTick;
+
+            Grid.GasLevels[(int)FluidType.Red] += RedGasProducedPerTick;
 
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] += RedLiquidProducedPerTick;
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] += GreenLiquidProducedPerTick;

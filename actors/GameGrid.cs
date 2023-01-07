@@ -277,7 +277,7 @@ public class GameGrid : Spatial
     {
         GD.Print($"Adding pump at {pos}");
 
-        DeleteAllNonWall(pos);
+        DeleteAll(pos);
 
         AT.True(!Pump[pos.x, pos.y]);
 
@@ -292,7 +292,7 @@ public class GameGrid : Spatial
     {
         GD.Print($"Adding outlet at {pos}");
 
-        DeleteAllNonWall(pos);
+        DeleteAll(pos);
 
         AT.True(!Outlet[pos.x, pos.y]);
 
@@ -309,9 +309,28 @@ public class GameGrid : Spatial
         {
             Pipe[pos.x, pos.y] = false;
             RemoveFromMultimesh("PipeCenters", TileToVector(pos));
+            RecomputeFluidNetworks();
         }
+    }
 
-        RecomputeFluidNetworks();
+    public void DeletePump(IntVec2 pos)
+    {
+        if (Pump[pos.x, pos.y])
+        {
+            Pump[pos.x, pos.y] = false;
+            RemoveFromMultimesh("Pumps", TileToVector(pos));
+            RecomputeFluidNetworks();
+        }
+    }
+
+    public void DeleteOutlet(IntVec2 pos)
+    {
+        if (Outlet[pos.x, pos.y])
+        {
+            Outlet[pos.x, pos.y] = false;
+            RemoveFromMultimesh("Outlets", TileToVector(pos));
+            RecomputeFluidNetworks();
+        }
     }
 
     public void DeleteWall(IntVec2 pos)
@@ -323,14 +342,11 @@ public class GameGrid : Spatial
         }
     }
 
-    public void DeleteAllNonWall(IntVec2 pos)
-    {
-        DeletePipe(pos);
-    }
-
     public void DeleteAll(IntVec2 pos)
     {
-        DeleteAllNonWall(pos);
+        DeletePipe(pos);
+        DeletePump(pos);
+        DeleteOutlet(pos);
         DeleteWall(pos);
     }
 

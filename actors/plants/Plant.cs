@@ -13,6 +13,9 @@ public class Plant : Spatial
     public int BlueUsedPerTick;
 
     [Export]
+    public int RedLiquidProducedPerTick;
+
+    [Export]
     public int MaxGrowth;
 
     [Export]
@@ -50,6 +53,8 @@ public class Plant : Spatial
 
             // water is always recycled into the air
             Grid.GasLevels[(int)FluidType.Blue] += BlueUsedPerTick;
+
+            Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] += RedLiquidProducedPerTick;
 
             Scale = Vector3.One * ((Growth / (float)MaxGrowth) * .75f + .25f);
         }

@@ -426,6 +426,14 @@ public class GameGrid : Spatial
 
     public bool PlacePlantAt(IntVec2 pos, string plant)
     {
+        var vecPos = TileToVector(pos);
 
+        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.GetGlobalLocation().DistanceSquaredTo(vecPos) < 0.1f) != null) return false;
+
+        var plantInstance = GD.Load<PackedScene>(plant).Instance<Plant>();
+        GetTree().CurrentScene.AddChild(plantInstance);
+        plantInstance.Reposition(this, pos);
+
+        return true;
     }
 }

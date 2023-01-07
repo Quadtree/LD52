@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Godot;
 
 public class FluidNetwork
 {
@@ -42,5 +44,7 @@ public class FluidNetwork
                 output[fluidType] += actualPumpedAmount;
             }
         }
+
+        GD.Print($"output={String.Join(",", output)}");
     }
 }

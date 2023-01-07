@@ -82,7 +82,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-
+        foreach (var fn in FluidNetworks) fn.Update();
 
         for (var y = 0; y < HEIGHT; ++y)
         {

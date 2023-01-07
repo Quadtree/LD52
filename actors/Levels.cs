@@ -72,5 +72,5 @@ public class Level2 : Level
         }
     }
 
-    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn", "res://actors/plants/BitterLeaf.tscn" };
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/BitterLeaf.tscn" };
 }

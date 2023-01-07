@@ -1,5 +1,26 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="MultiMesh" id=2]
+mesh = SubResource( 1 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 16, 16, 0.05 )
 
 [node name="Default" type="Spatial"]
 
 [node name="GameGrid" type="Spatial" parent="."]
+script = ExtResource( 1 )
+
+[node name="Liquid" type="MultiMeshInstance" parent="GameGrid"]
+multimesh = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="GameGrid"]
+mesh = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 11.7399 )

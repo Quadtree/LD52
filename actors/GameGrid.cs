@@ -60,7 +60,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        Fluid[8, 15, 0] += 500;
+        Fluid[8, 15, 0] += 10_000;
 
         for (var x = 0; x < WIDTH; ++x)
         {
@@ -86,7 +86,7 @@ public class GameGrid : Spatial
                     {
                         if (x > 0 && IsTileOpenToFluid(new IntVec2(x - 1, y), (Fluid)f))
                         {
-                            var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 100;
+                            var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 10;
 
                             MoveFluidBetween(new IntVec2(x, y), new IntVec2(x - 1, y), (Fluid)f, toFlow);
                         }

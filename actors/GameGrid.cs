@@ -80,8 +80,10 @@ public class GameGrid : Spatial
                 {
                     if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (FluidType)f))
                     {
-                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Fluid[x, y, f] / 10);
-                        LiquidFell[x, y] = true;
+                        if (MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Fluid[x, y, f] / 10) > 0)
+                        {
+                            LiquidFell[x, y] = true;
+                        }
                     }
                 }
             }
@@ -225,14 +227,15 @@ public class GameGrid : Spatial
         return tile.x + tile.y * WIDTH;
     }
 
-    private void MoveFluidBetween(IntVec2 from, IntVec2 to, FluidType type, int amt)
+    private int MoveFluidBetween(IntVec2 from, IntVec2 to, FluidType type, int amt)
     {
         Fluid[to.x, to.y, (int)type] += amt;
         Fluid[from.x, from.y, (int)type] -= amt;
+        var overflow = 0;
 
         if (Fluid[to.x, to.y, (int)type] > 1_000_000)
         {
-            var overflow = Fluid[to.x, to.y, (int)type] - 1_000_000;
+            overflow = Fluid[to.x, to.y, (int)type] - 1_000_000;
             Fluid[from.x, from.y, (int)type] += overflow;
             Fluid[to.x, to.y, (int)type] -= overflow;
         }
@@ -241,5 +244,7 @@ public class GameGrid : Spatial
         AT.True(Fluid[to.x, to.y, (int)type] <= 1_000_000);
         AT.True(Fluid[from.x, from.y, (int)type] >= 0);
         AT.True(Fluid[from.x, from.y, (int)type] <= 1_000_000);
+
+        return amt - overflow;
     }
 }

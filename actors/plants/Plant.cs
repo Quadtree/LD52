@@ -43,6 +43,8 @@ public class Plant : Spatial
 
     public bool IsRipe => Growth >= MaxGrowth;
 
+    public string SourceFile;
+
     public enum EYieldType
     {
         FoodLeaf,

@@ -91,7 +91,7 @@ public class GameGrid : Spatial
                 var picked = VectorToTile(Picking.PickPointAtCursor(this));
                 //GD.Print(picked);
 
-                if (picked != null)
+                if (picked != null && IsInBounds(picked.Value))
                 {
                     if (PlaceableSelected == Placables.TubWall && !TubWalls[picked.Value.x, picked.Value.y]) AddTubWall(picked.Value);
                     if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
@@ -391,6 +391,8 @@ public class GameGrid : Spatial
 
     public void DeleteAll(IntVec2 pos)
     {
+        GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos)?.QueueFree();
+
         DeletePipe(pos);
         DeletePump(pos);
         DeleteOutlet(pos);
@@ -546,13 +548,16 @@ public class GameGrid : Spatial
     {
         var vecPos = TileToVector(pos);
 
-        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos) != null) return false;
+        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos && it.SourceFile == plant) != null) return false;
+
+        DeleteAll(pos);
 
         GD.Print($"Placing plant {plant} at {pos}");
 
         var plantInstance = GD.Load<PackedScene>(plant).Instance<Plant>();
         GetTree().CurrentScene.AddChild(plantInstance);
         plantInstance.Reposition(this, pos);
+        plantInstance.SourceFile = plant;
 
         return true;
     }

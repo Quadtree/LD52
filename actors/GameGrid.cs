@@ -68,17 +68,24 @@ public class GameGrid : Spatial
             {
                 for (var f = 0; f < 3; ++f)
                 {
-                    if (y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (Fluid)f))
+                    if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (Fluid)f))
                     {
                         MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (Fluid)f, Fluid[x, y, f]);
                     }
-                    else
+
+                    if (Fluid[x, y, f] > 0)
                     {
                         if (x > 0 && IsTileOpenToFluid(new IntVec2(x - 1, y), (Fluid)f))
                         {
                             var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 10;
 
                             MoveFluidBetween(new IntVec2(x, y), new IntVec2(x - 1, y), (Fluid)f, toFlow);
+                        }
+                        if (x < 15 && IsTileOpenToFluid(new IntVec2(x + 1, y), (Fluid)f))
+                        {
+                            var toFlow = (Fluid[x, y, f] - Fluid[x + 1, y, f]) / 10;
+
+                            MoveFluidBetween(new IntVec2(x, y), new IntVec2(x + 1, y), (Fluid)f, toFlow);
                         }
                     }
                 }

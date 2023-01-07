@@ -428,7 +428,7 @@ public class GameGrid : Spatial
     {
         var vecPos = TileToVector(pos);
 
-        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.GetGlobalLocation().DistanceSquaredTo(vecPos) < 0.1f) != null) return false;
+        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos) != null) return false;
 
         var plantInstance = GD.Load<PackedScene>(plant).Instance<Plant>();
         GetTree().CurrentScene.AddChild(plantInstance);

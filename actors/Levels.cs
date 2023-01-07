@@ -12,6 +12,6 @@ public class Level1 : Level
     {
         base.CreateLevel(grid);
 
-        
+        grid.AddFluid(new IntVec2(14, 14), FluidType.Green, 1_000_000);
     }
 }

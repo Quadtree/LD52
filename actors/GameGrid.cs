@@ -17,6 +17,8 @@ public class GameGrid : Spatial
     // a full square has a value of 1_000_000
     int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
 
+    Level Level;
+
     public override void _Ready()
     {
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
@@ -36,6 +38,10 @@ public class GameGrid : Spatial
 
         //     }
         // }
+
+        Level = new Level1();
+
+        Level.CreateLevel(this);
     }
 
     public override void _Process(float delta)

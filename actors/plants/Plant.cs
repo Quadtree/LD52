@@ -16,6 +16,9 @@ public class Plant : Spatial
     public int RedLiquidProducedPerTick;
 
     [Export]
+    public int GreenLiquidProducedPerTick;
+
+    [Export]
     public int MaxRedTolerancePerMili;
 
     [Export]
@@ -38,6 +41,7 @@ public class Plant : Spatial
     {
         FoodLeaf,
         BitterLeaf,
+        MuckRoot,
     }
 
     public override void _Ready()

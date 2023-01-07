@@ -16,7 +16,7 @@ Several types of plant
 1. Foodleaf: Likes green: 33% water 66%, must be in light
 2. Bitterleaf: Likes green: 50% water 50%. produces red, must be in light
 3. AstroCoffee: Likes green 25%, water 75%, must be in shade
-4. Muckroot: Likes red 50% water 50%. does not care about light
+4. Muckroot: Likes red 50% water 50%. does not care about light. Produces green
 5. Gasleaf: Likes water 100%, must be in light, produces red gas
 
 Levels

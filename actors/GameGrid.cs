@@ -24,7 +24,7 @@ public class GameGrid : Spatial
     bool[,] Pump = new bool[WIDTH, HEIGHT];
     bool[,] Outlet = new bool[WIDTH, HEIGHT];
 
-    int[] GasLevels = new int[FluidNetwork.NUM_FLUID_TYPES];
+    public int[] GasLevels = new int[FluidNetwork.NUM_FLUID_TYPES];
 
     Level Level;
 

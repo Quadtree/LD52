@@ -47,7 +47,10 @@ public class Plant : Spatial
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue] -= BlueUsedPerTick;
             Growth++;
 
-            Scale = Vector3.One * (Growth / (float)MaxGrowth);
+            // water is always recycled into the air
+            Grid.GasLevels[(int)FluidType.Blue] += BlueUsedPerTick;
+
+            Scale = Vector3.One * ((Growth / (float)MaxGrowth) * .75f + .25f);
         }
     }
 

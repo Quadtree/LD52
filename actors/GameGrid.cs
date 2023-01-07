@@ -8,6 +8,7 @@ public class GameGrid : Spatial
     Placables? PlaceableSelected;
 
     bool Placing = false;
+    bool Destroying = false;
 
     const int WIDTH = 16;
     const int HEIGHT = 16;
@@ -77,6 +78,16 @@ public class GameGrid : Spatial
                 if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
                 if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
                 if (PlaceableSelected == Placables.PlantFoodLeaf) PlacePlantAt(picked.Value, "res://actors/plants/FoodLeaf.tscn");
+            }
+        }
+
+        if (Destroying)
+        {
+            var picked = VectorToTile(Picking.PickPointAtCursor(this));
+
+            if (picked != null)
+            {
+                DeleteAll(picked.Value);
             }
         }
     }
@@ -201,6 +212,20 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;
         if (@event.IsActionPressed("select_item_3")) PlaceableSelected = Placables.Outlet;
         if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.PlantFoodLeaf;
+
+        if (@event.IsActionPressed("deselect_or_destroy"))
+        {
+            if (PlaceableSelected != null)
+            {
+                PlaceableSelected = null;
+            }
+            else
+            {
+                Destroying = true;
+            }
+        }
+
+        if (@event.IsActionReleased("deselect_or_destroy")) Destroying = false;
     }
 
     public IntVec2? VectorToTile(Vector3? v3)
@@ -289,9 +314,24 @@ public class GameGrid : Spatial
         RecomputeFluidNetworks();
     }
 
+    public void DeleteWall(IntVec2 pos)
+    {
+        if (TubWalls[pos.x, pos.y])
+        {
+            TubWalls[pos.x, pos.y] = false;
+            RemoveFromMultimesh("TubWalls", TileToVector(pos));
+        }
+    }
+
     public void DeleteAllNonWall(IntVec2 pos)
     {
         DeletePipe(pos);
+    }
+
+    public void DeleteAll(IntVec2 pos)
+    {
+        DeleteAllNonWall(pos);
+        DeleteWall(pos);
     }
 
     private void AddToMultimesh(string subName, Vector3 pos)
@@ -322,6 +362,8 @@ public class GameGrid : Spatial
                 mm.SetInstanceTransform(i, mm.GetInstanceTransform(i + 1));
             }
         }
+
+        if (!foundIt) GD.PushWarning($"Not able to find sub mesh from {subName} to delete at {pos}");
     }
 
     public void AddFluid(IntVec2 pos, FluidType type, int amt)

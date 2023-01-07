@@ -124,7 +124,7 @@ public class Level4 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.FoodLeaf] = 10;
+            ret[Plant.EYieldType.FoodLeaf] = 20;
             return ret;
         }
     }

@@ -133,7 +133,7 @@ public class GameGrid : Spatial
                             new Vector3(totalFluid / 1_000_000f, 0, 0),
                             new Vector3(0, 1, 0),
                             new Vector3(0, 0, 1)
-                        ), TileToVector(new IntVec2(x, y)));
+                        ), TileToVector(new IntVec2(x, y)) + new Vector3(0, -1, 0));
                     }
 
                     lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);

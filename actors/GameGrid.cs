@@ -60,7 +60,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        Fluid[8, 15, 0] += 10_000;
+        Fluid[8, 15, (int)FluidType.Blue] += 10_000;
 
         for (var y = 0; y < HEIGHT; ++y)
         {
@@ -68,9 +68,9 @@ public class GameGrid : Spatial
             {
                 for (var f = 0; f < 3; ++f)
                 {
-                    if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (Fluid)f))
+                    if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (FluidType)f))
                     {
-                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (Fluid)f, Fluid[x, y, f]);
+                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Fluid[x, y, f]);
                     }
                 }
             }
@@ -79,11 +79,11 @@ public class GameGrid : Spatial
             {
                 for (var f = 0; f < 3; ++f)
                 {
-                    if (Fluid[x, y, f] > 0 && x > 0 && IsTileOpenToFluid(new IntVec2(x, y), (Fluid)f) && IsTileOpenToFluid(new IntVec2(x - 1, y), (Fluid)f))
+                    if (Fluid[x, y, f] > 0 && x > 0 && IsTileOpenToFluid(new IntVec2(x, y), (FluidType)f) && IsTileOpenToFluid(new IntVec2(x - 1, y), (FluidType)f))
                     {
                         var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 10;
 
-                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x - 1, y), (Fluid)f, toFlow);
+                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x - 1, y), (FluidType)f, toFlow);
                     }
                 }
             }
@@ -92,11 +92,11 @@ public class GameGrid : Spatial
             {
                 for (var f = 0; f < 3; ++f)
                 {
-                    if (Fluid[x, y, f] > 0 && x < 15 && IsTileOpenToFluid(new IntVec2(x, y), (Fluid)f) && IsTileOpenToFluid(new IntVec2(x + 1, y), (Fluid)f))
+                    if (Fluid[x, y, f] > 0 && x < 15 && IsTileOpenToFluid(new IntVec2(x, y), (FluidType)f) && IsTileOpenToFluid(new IntVec2(x + 1, y), (FluidType)f))
                     {
                         var toFlow = (Fluid[x, y, f] - Fluid[x + 1, y, f]) / 10;
 
-                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x + 1, y), (Fluid)f, toFlow);
+                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x + 1, y), (FluidType)f, toFlow);
                     }
                 }
             }
@@ -120,7 +120,7 @@ public class GameGrid : Spatial
 
                     lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
 
-                    lq.Multimesh.SetInstanceColor(GetLiquidInstanceId(new IntVec2(x, y)), new Color(1, 1, 1, 0.5f));
+                    lq.Multimesh.SetInstanceColor(GetLiquidInstanceId(new IntVec2(x, y)), new Color(Fluid[x, y, (int)FluidType.Red] / (float)totalFluid, Fluid[x, y, (int)FluidType.Green] / (float)totalFluid, Fluid[x, y, (int)FluidType.Blue] / (float)totalFluid, 0.5f));
                 }
                 else
                 {
@@ -182,7 +182,7 @@ public class GameGrid : Spatial
         tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, TileToVector(pos)));
     }
 
-    private bool IsTileOpenToFluid(IntVec2 tile, Fluid fluid)
+    private bool IsTileOpenToFluid(IntVec2 tile, FluidType fluid)
     {
         if (!TubWalls[tile.x, tile.y]) return true;
 
@@ -194,7 +194,7 @@ public class GameGrid : Spatial
         return tile.x + tile.y * WIDTH;
     }
 
-    private void MoveFluidBetween(IntVec2 from, IntVec2 to, Fluid type, int amt)
+    private void MoveFluidBetween(IntVec2 from, IntVec2 to, FluidType type, int amt)
     {
         Fluid[to.x, to.y, (int)type] += amt;
         Fluid[from.x, from.y, (int)type] -= amt;

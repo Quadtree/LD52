@@ -1,6 +1,6 @@
-public enum Fluid
+public enum FluidType
 {
-    Red,
+    Blue,
     Green,
-    Blue
+    Red
 }

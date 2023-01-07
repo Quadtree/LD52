@@ -12,7 +12,7 @@ public class GameGrid : Spatial
 
     bool[,] TubWalls = new bool[WIDTH, HEIGHT];
 
-    // a full square has a value of 1_000_000_000
+    // a full square has a value of 1_000_000
     int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
 
     public override void _Ready()
@@ -20,6 +20,20 @@ public class GameGrid : Spatial
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
         tw.Multimesh.InstanceCount = WIDTH * HEIGHT;
         tw.Multimesh.VisibleInstanceCount = 0;
+
+
+        var lq = this.FindChildByName<MultiMeshInstance>("Liquid");
+        lq.Multimesh.InstanceCount = WIDTH * HEIGHT;
+        lq.Multimesh.VisibleInstanceCount = -1;
+
+        // for (var x = 0; x < WIDTH; ++x)
+        // {
+        //     for (var y = 0; y < HEIGHT; ++y)
+        //     {
+        //         lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), new Transform(Quat.Identity, TileToVector(new IntVec2(x, y))));
+
+        //     }
+        // }
     }
 
     public override void _Process(float delta)
@@ -46,7 +60,38 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        Fluid[8, 16, 0] += 100_000;
+        Fluid[8, 15, 0] += 100;
+
+        for (var x = 0; x < WIDTH; ++x)
+        {
+            for (var y = 0; y < HEIGHT; ++y)
+            {
+                for (var f = 0; f < 3; ++f)
+                {
+                    if (y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (Fluid)f))
+                    {
+                        Fluid[x, y - 1, f] = Fluid[x, y, f];
+                        Fluid[x, y, f] = 0;
+                    }
+                }
+            }
+        }
+
+        var lq = this.FindChildByName<MultiMeshInstance>("Liquid");
+
+        for (var x = 0; x < WIDTH; ++x)
+        {
+            for (var y = 0; y < HEIGHT; ++y)
+            {
+                var totalFluid = Fluid[x, y, 0] + Fluid[x, y, 1] + Fluid[x, y, 2];
+
+                var transform = new Transform();
+                transform.Scaled(new Vector3(1, totalFluid / 1_000_000f, 1));
+                transform.Translated(TileToVector(new IntVec2(x, y)));
+
+                lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
+            }
+        }
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -99,5 +144,17 @@ public class GameGrid : Spatial
         tw.Multimesh.VisibleInstanceCount++;
 
         tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, TileToVector(pos)));
+    }
+
+    private bool IsTileOpenToFluid(IntVec2 tile, Fluid fluid)
+    {
+        if (!TubWalls[tile.x, tile.y]) return true;
+
+        return false;
+    }
+
+    private int GetLiquidInstanceId(IntVec2 tile)
+    {
+        return tile.x + tile.y * WIDTH;
     }
 }

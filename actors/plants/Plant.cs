@@ -60,7 +60,13 @@ public class Plant : Spatial
             redPartsPerMili = Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] * 1000 / (Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] + Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] + Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue]);
         }
 
-        if (redPartsPerMili <= MaxRedTolerancePerMili && Growth < MaxGrowth && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] >= RedUsedPerTick && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] >= GreenUsedPerTick && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue] >= BlueUsedPerTick)
+        if (redPartsPerMili <= MaxRedTolerancePerMili &&
+            Growth < MaxGrowth &&
+            Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] >= RedUsedPerTick &&
+            Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] >= GreenUsedPerTick &&
+            Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue] >= BlueUsedPerTick &&
+            (Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] + Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] + Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue]) < (1_000_000 - RedLiquidProducedPerTick - GreenLiquidProducedPerTick)
+        )
         {
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] -= RedUsedPerTick;
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] -= GreenUsedPerTick;

@@ -92,6 +92,44 @@ public class GameGrid : Spatial
             }
         }
 
+        for (var x = WIDTH - 1; x >= 0; --x)
+        {
+            for (var y = 0; y < HEIGHT; ++y)
+            {
+                for (var f = 0; f < 3; ++f)
+                {
+                    if (Fluid[x, y, f] > 0)
+                    {
+                        if (x < 15 && IsTileOpenToFluid(new IntVec2(x + 1, y), (Fluid)f))
+                        {
+                            var toFlow = (Fluid[x, y, f] - Fluid[x + 1, y, f]) / 10;
+
+                            MoveFluidBetween(new IntVec2(x, y), new IntVec2(x + 1, y), (Fluid)f, toFlow);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (var x = 0; x < WIDTH; ++x)
+        {
+            for (var y = 0; y < HEIGHT; ++y)
+            {
+                for (var f = 0; f < 3; ++f)
+                {
+                    if (Fluid[x, y, f] > 0)
+                    {
+                        if (x > 0 && IsTileOpenToFluid(new IntVec2(x - 1, y), (Fluid)f))
+                        {
+                            var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 10;
+
+                            MoveFluidBetween(new IntVec2(x, y), new IntVec2(x - 1, y), (Fluid)f, toFlow);
+                        }
+                    }
+                }
+            }
+        }
+
         var lq = this.FindChildByName<MultiMeshInstance>("Liquid");
 
         for (var x = 0; x < WIDTH; ++x)

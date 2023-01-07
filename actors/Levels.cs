@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class Level
 {
     public virtual void CreateLevel(GameGrid grid)
@@ -19,6 +21,8 @@ public class Level
         grid.AddTubWall(bottomLeft + new IntVec2(width + 1, 0));
         grid.AddTubWall(bottomLeft + new IntVec2(width + 1, 1));
     }
+
+    public virtual Dictionary<Plant.EYieldType, int> Requirements { get; }
 }
 
 public class Level1 : Level
@@ -30,5 +34,15 @@ public class Level1 : Level
         CreateFluidTub(grid, new IntVec2(10, 1), 3, FluidType.Green);
 
         CreateFluidTub(grid, new IntVec2(6, 1), 3, FluidType.Blue);
+    }
+
+    public override Dictionary<Plant.EYieldType, int> Requirements
+    {
+        get
+        {
+            var ret = new Dictionary<Plant.EYieldType, int>();
+            ret[Plant.EYieldType.FoodLeaf] = 15;
+            return ret;
+        }
     }
 }

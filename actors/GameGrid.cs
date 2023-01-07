@@ -40,6 +40,18 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
+        {
+            var mmi = this.FindChildByName<MultiMeshInstance>("Pumps");
+            mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
+            mmi.Multimesh.VisibleInstanceCount = 0;
+        }
+
+        {
+            var mmi = this.FindChildByName<MultiMeshInstance>("Outlets");
+            mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
+            mmi.Multimesh.VisibleInstanceCount = 0;
+        }
+
         Level = new Level1();
 
         Level.CreateLevel(this);
@@ -56,6 +68,8 @@ public class GameGrid : Spatial
             {
                 if (PlaceableSelected == Placables.TubWall && !TubWalls[picked.Value.x, picked.Value.y]) AddTubWall(picked.Value);
                 if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
+                if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
+                if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
             }
         }
     }
@@ -206,13 +220,53 @@ public class GameGrid : Spatial
 
     public void AddPipe(IntVec2 pos)
     {
-        GD.Print($"Adding pipe wall at {pos}");
+        GD.Print($"Adding pipe at {pos}");
 
         AT.True(!Pipe[pos.x, pos.y]);
 
         Pipe[pos.x, pos.y] = true;
 
         AddToMultimesh("PipeCenters", TileToVector(pos));
+    }
+
+    public void AddPump(IntVec2 pos)
+    {
+        GD.Print($"Adding pump at {pos}");
+
+        DeleteAllNonWall(pos);
+
+        AT.True(!Pump[pos.x, pos.y]);
+
+        Pump[pos.x, pos.y] = true;
+
+        AddToMultimesh("Pumps", TileToVector(pos));
+    }
+
+    public void AddOutlet(IntVec2 pos)
+    {
+        GD.Print($"Adding outlet at {pos}");
+
+        DeleteAllNonWall(pos);
+
+        AT.True(!Outlet[pos.x, pos.y]);
+
+        Outlet[pos.x, pos.y] = true;
+
+        AddToMultimesh("Outlets", TileToVector(pos));
+    }
+
+    public void DeletePipe(IntVec2 pos)
+    {
+        if (Pipe[pos.x, pos.y])
+        {
+            Pipe[pos.x, pos.y] = false;
+            RemoveFromMultimesh("PipeCenters", TileToVector(pos));
+        }
+    }
+
+    public void DeleteAllNonWall(IntVec2 pos)
+    {
+        DeletePipe(pos);
     }
 
     private void AddToMultimesh(string subName, Vector3 pos)
@@ -222,6 +276,27 @@ public class GameGrid : Spatial
         tw.Multimesh.VisibleInstanceCount++;
 
         tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, pos));
+    }
+
+    private void RemoveFromMultimesh(string subName, Vector3 pos)
+    {
+        var mm = this.FindChildByName<MultiMeshInstance>(subName).Multimesh;
+
+        var foundIt = false;
+
+        for (var i = 0; i < mm.VisibleInstanceCount; ++i)
+        {
+            if (mm.GetInstanceTransform(i).origin.DistanceSquaredTo(pos) < 0.1f)
+            {
+                mm.VisibleInstanceCount--;
+                foundIt = true;
+            }
+
+            if (foundIt)
+            {
+                mm.SetInstanceTransform(i, mm.GetInstanceTransform(i + 1));
+            }
+        }
     }
 
     public void AddFluid(IntVec2 pos, FluidType type, int amt)

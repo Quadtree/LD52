@@ -85,9 +85,11 @@ public class GameGrid : Spatial
             {
                 var totalFluid = Fluid[x, y, 0] + Fluid[x, y, 1] + Fluid[x, y, 2];
 
-                var transform = new Transform();
-                transform.Scaled(new Vector3(1, totalFluid / 1_000_000f, 1));
-                transform.Translated(TileToVector(new IntVec2(x, y)));
+                var transform = new Transform(new Basis(
+                    new Vector3(1, 0, 0),
+                    new Vector3(0, 1, 0),
+                    new Vector3(0, 0, 1)
+                ), TileToVector(new IntVec2(x, y)));
 
                 lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
             }

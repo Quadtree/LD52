@@ -100,6 +100,19 @@ public class GameGrid : Spatial
 
         foreach (var fn in FluidNetworks) fn.Update();
 
+        for (var i = 0; i < FluidNetwork.NUM_FLUID_TYPES; ++i)
+        {
+            var condensed = GasLevels[i] / 1000;
+
+            for (var x = 0; x < WIDTH; ++x)
+            {
+                Fluid[x, 0, i] += condensed;
+                GasLevels[i] -= condensed;
+            }
+
+            AT.True(GasLevels[i] >= 0);
+        }
+
         for (var y = 0; y < HEIGHT; ++y)
         {
             for (var x = 0; x < WIDTH; ++x)

@@ -30,15 +30,6 @@ public class GameGrid : Spatial
         lq.Multimesh.InstanceCount = WIDTH * HEIGHT;
         lq.Multimesh.VisibleInstanceCount = -1;
 
-        // for (var x = 0; x < WIDTH; ++x)
-        // {
-        //     for (var y = 0; y < HEIGHT; ++y)
-        //     {
-        //         lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), new Transform(Quat.Identity, TileToVector(new IntVec2(x, y))));
-
-        //     }
-        // }
-
         Level = new Level1();
 
         Level.CreateLevel(this);

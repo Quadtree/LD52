@@ -28,17 +28,21 @@ public class Plant : Spatial
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] >= RedUsedPerTick && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] >= GreenUsedPerTick && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue] >= BlueUsedPerTick)
+        if (Growth < MaxGrowth && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] >= RedUsedPerTick && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] >= GreenUsedPerTick && Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue] >= BlueUsedPerTick)
         {
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] -= RedUsedPerTick;
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] -= GreenUsedPerTick;
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Blue] -= BlueUsedPerTick;
+            Growth++;
+
+            Scale = Vector3.One * (Growth / (float)MaxGrowth);
         }
     }
 
     public void Reposition(GameGrid gg, IntVec2 pos)
     {
         Grid = gg;
+        Pos = pos;
         this.SetGlobalLocation(gg.TileToVector(pos));
     }
 }

@@ -58,7 +58,7 @@ public class Level2 : Level
 
         CreateFluidTub(grid, new IntVec2(10, 1), 3, FluidType.Green);
 
-        CreateFluidTub(grid, new IntVec2(6, 1), 3, FluidType.Blue);
+        CreateFluidTub(grid, new IntVec2(1, 1), 7, FluidType.Blue);
     }
 
     public override Dictionary<Plant.EYieldType, int> Requirements
@@ -66,8 +66,7 @@ public class Level2 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.FoodLeaf] = 5;
-            ret[Plant.EYieldType.BitterLeaf] = 10;
+            ret[Plant.EYieldType.BitterLeaf] = 5;
             return ret;
         }
     }

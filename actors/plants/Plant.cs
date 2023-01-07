@@ -30,7 +30,8 @@ public class Plant : Spatial
 
     public enum EYieldType
     {
-        FoodLeaf
+        FoodLeaf,
+        BitterLeaf,
     }
 
     public override void _Ready()

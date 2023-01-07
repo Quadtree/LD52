@@ -46,3 +46,26 @@ public class Level1 : Level
         }
     }
 }
+
+public class Level2 : Level
+{
+    public override void CreateLevel(GameGrid grid)
+    {
+        base.CreateLevel(grid);
+
+        CreateFluidTub(grid, new IntVec2(10, 1), 3, FluidType.Green);
+
+        CreateFluidTub(grid, new IntVec2(6, 1), 3, FluidType.Blue);
+    }
+
+    public override Dictionary<Plant.EYieldType, int> Requirements
+    {
+        get
+        {
+            var ret = new Dictionary<Plant.EYieldType, int>();
+            ret[Plant.EYieldType.FoodLeaf] = 5;
+            ret[Plant.EYieldType.BitterLeaf] = 10;
+            return ret;
+        }
+    }
+}

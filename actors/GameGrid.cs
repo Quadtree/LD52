@@ -17,7 +17,7 @@ public class GameGrid : Spatial
     bool[,] LiquidFell = new bool[WIDTH, HEIGHT];
 
     // a full square has a value of 1_000_000
-    int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
+    public int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
 
     bool[,] Pipe = new bool[WIDTH, HEIGHT];
     bool[,] Pump = new bool[WIDTH, HEIGHT];

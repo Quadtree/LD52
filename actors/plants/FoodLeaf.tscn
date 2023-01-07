@@ -4,5 +4,5 @@
 
 [node name="Plant" instance=ExtResource( 1 )]
 GreenUsedPerTick = 100
-BlueUsedPerTick = 200
+BlueUsedPerTick = 500
 MaxGrowth = 900

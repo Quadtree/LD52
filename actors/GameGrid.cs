@@ -75,31 +75,43 @@ public class GameGrid : Spatial
 
     public override void _Process(float delta)
     {
-        if (Placing && PlaceableSelected != null)
+        if (Placing && PlaceableSelected == Placables.Harvest)
         {
-            var picked = VectorToTile(Picking.PickPointAtCursor(this));
-            //GD.Print(picked);
-
-            if (picked != null)
+            var picked = Picking.PickObjectAtCursor(this);
+            if (picked != null && picked.GetParent() is Plant && picked.GetParent<Plant>().IsRipe)
             {
-                if (PlaceableSelected == Placables.TubWall && !TubWalls[picked.Value.x, picked.Value.y]) AddTubWall(picked.Value);
-                if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
-                if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
-                if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
-                if (PlaceableSelected == Placables.Filter && !FilterWalls[picked.Value.x, picked.Value.y]) AddFilterWall(picked.Value);
-                if (PlaceableSelected == Placables.Plant0) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[0]);
-                if (PlaceableSelected == Placables.Plant1) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[1]);
-                if (PlaceableSelected == Placables.Plant2) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[2]);
+                GD.Print($"Picking plant {picked}");
+                picked.GetParent<Plant>().Pick();
             }
         }
-
-        if (Destroying)
+        else
         {
-            var picked = VectorToTile(Picking.PickPointAtCursor(this));
-
-            if (picked != null)
+            if (Placing && PlaceableSelected != null)
             {
-                DeleteAll(picked.Value);
+                var picked = VectorToTile(Picking.PickPointAtCursor(this));
+                //GD.Print(picked);
+
+                if (picked != null)
+                {
+                    if (PlaceableSelected == Placables.TubWall && !TubWalls[picked.Value.x, picked.Value.y]) AddTubWall(picked.Value);
+                    if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
+                    if (PlaceableSelected == Placables.Pump && !Pump[picked.Value.x, picked.Value.y]) AddPump(picked.Value);
+                    if (PlaceableSelected == Placables.Outlet && !Outlet[picked.Value.x, picked.Value.y]) AddOutlet(picked.Value);
+                    if (PlaceableSelected == Placables.Filter && !FilterWalls[picked.Value.x, picked.Value.y]) AddFilterWall(picked.Value);
+                    if (PlaceableSelected == Placables.Plant0) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[0]);
+                    if (PlaceableSelected == Placables.Plant1) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[1]);
+                    if (PlaceableSelected == Placables.Plant2) PlacePlantAt(picked.Value, Level.AvailablePlantTypes[2]);
+                }
+            }
+
+            if (Destroying)
+            {
+                var picked = VectorToTile(Picking.PickPointAtCursor(this));
+
+                if (picked != null)
+                {
+                    DeleteAll(picked.Value);
+                }
             }
         }
     }
@@ -219,16 +231,7 @@ public class GameGrid : Spatial
 
         if (@event.IsActionPressed("place_item"))
         {
-            var picked = Picking.PickObjectAtCursor(this);
-            if (picked != null && picked.GetParent() is Plant && picked.GetParent<Plant>().IsRipe)
-            {
-                GD.Print($"Picking plant {picked}");
-                picked.GetParent<Plant>().Pick();
-            }
-            else
-            {
-                Placing = true;
-            }
+            Placing = true;
         }
 
         if (@event.IsActionReleased("place_item"))
@@ -244,6 +247,7 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_5")) PlaceableSelected = Placables.Plant1;
         if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
         if (@event.IsActionPressed("select_filter") && Level.AllowFilter) PlaceableSelected = Placables.Filter;
+        if (@event.IsActionPressed("select_harvest") && Level.AllowFilter) PlaceableSelected = Placables.Harvest;
 
         if (@event.IsActionPressed("deselect_or_destroy"))
         {

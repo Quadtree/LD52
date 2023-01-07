@@ -17,7 +17,7 @@ BlueUsedPerTick = 100
 RedLiquidProducedPerTick = 100
 GreenLiquidProducedPerTick = 100
 MaxRedTolerancePerMili = 100000
-MaxGrowth = 600
+MaxGrowth = 3000
 YieldType = 2
 
 [node name="MeshInstance" parent="." index="0"]

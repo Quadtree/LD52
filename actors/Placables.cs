@@ -5,6 +5,7 @@ public enum Placables
     Outlet,
     Pump,
     Filter,
+    Harvest,
 
     Plant0,
     Plant1,

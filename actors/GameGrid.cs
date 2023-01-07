@@ -12,6 +12,7 @@ public class GameGrid : Spatial
 
     bool[,] TubWalls = new bool[WIDTH, HEIGHT];
 
+    // a full square has a value of 1_000_000_000
     int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
 
     public override void _Ready()
@@ -45,7 +46,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        
+        Fluid[8, 16, 0] += 100_000;
     }
 
     public override void _UnhandledInput(InputEvent @event)

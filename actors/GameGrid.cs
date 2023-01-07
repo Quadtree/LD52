@@ -19,6 +19,11 @@ public class GameGrid : Spatial
     {
         base._UnhandledInput(@event);
 
+        if (@event.IsActionPressed("place_item"))
+        {
+            
+        }
+
         if (@event.IsActionPressed("select_item_0"))
         {
             PlaceableSelected = Placables.TubWall;

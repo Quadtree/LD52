@@ -62,7 +62,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        Fluid[8, 15, (int)FluidType.Blue] += 10_000;
+        //Fluid[8, 15, (int)FluidType.Blue] += 10_000;
 
         for (var y = 0; y < HEIGHT; ++y)
         {
@@ -187,7 +187,7 @@ public class GameGrid : Spatial
         );
     }
 
-    private void AddTubWall(IntVec2 pos)
+    public void AddTubWall(IntVec2 pos)
     {
         GD.Print($"Adding tub wall at {pos}");
 
@@ -198,6 +198,13 @@ public class GameGrid : Spatial
         tw.Multimesh.VisibleInstanceCount++;
 
         tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, TileToVector(pos)));
+    }
+
+    public void AddFluid(IntVec2 pos, FluidType type, int amt)
+    {
+        Fluid[pos.x, pos.y, (int)type] += amt;
+
+        AT.LessThan(Fluid[pos.x, pos.y, (int)type], 1_000_001);
     }
 
     private bool IsTileOpenToFluid(IntVec2 tile, FluidType fluid)

@@ -231,6 +231,8 @@ public class GameGrid : Spatial
         Pipe[pos.x, pos.y] = true;
 
         AddToMultimesh("PipeCenters", TileToVector(pos));
+
+        RecomputeFluidNetworks();
     }
 
     public void AddPump(IntVec2 pos)
@@ -244,6 +246,8 @@ public class GameGrid : Spatial
         Pump[pos.x, pos.y] = true;
 
         AddToMultimesh("Pumps", TileToVector(pos));
+
+        RecomputeFluidNetworks();
     }
 
     public void AddOutlet(IntVec2 pos)
@@ -257,6 +261,8 @@ public class GameGrid : Spatial
         Outlet[pos.x, pos.y] = true;
 
         AddToMultimesh("Outlets", TileToVector(pos));
+
+        RecomputeFluidNetworks();
     }
 
     public void DeletePipe(IntVec2 pos)
@@ -266,6 +272,8 @@ public class GameGrid : Spatial
             Pipe[pos.x, pos.y] = false;
             RemoveFromMultimesh("PipeCenters", TileToVector(pos));
         }
+
+        RecomputeFluidNetworks();
     }
 
     public void DeleteAllNonWall(IntVec2 pos)
@@ -377,27 +385,35 @@ public class GameGrid : Spatial
                         var next = open.First();
                         open.Remove(next);
                         closed.Add(next);
+                        claimed[next.x, next.y] = true;
 
                         foreach (var delta in deltas)
                         {
                             var np = next + delta;
 
-                            if (!open.Contains(np) && !closed.Contains(np))
+                            if (IsInBounds(np) && IsPartOfFluidNetwork(np) && !open.Contains(np) && !closed.Contains(np))
                             {
                                 open.Add(np);
                             }
                         }
                     }
 
-                    var network = new FluidNetwork
+                    FluidNetworks.Add(new FluidNetwork
                     {
                         Grid = this,
                         Outlets = closed.Where(it => Outlet[it.x, it.y]).ToArray(),
                         Pumps = closed.Where(it => Pump[it.x, it.y]).ToArray(),
                         Tiles = closed.ToArray(),
-                    };
+                    });
                 }
             }
         }
+
+        GD.Print($"Discovered {FluidNetworks.Count} fluid networks");
+    }
+
+    public bool IsInBounds(IntVec2 pos)
+    {
+        return pos.x >= 0 && pos.y >= 0 && pos.x < WIDTH && pos.y < HEIGHT;
     }
 }

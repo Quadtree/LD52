@@ -23,6 +23,7 @@ public class Level
     }
 
     public virtual Dictionary<Plant.EYieldType, int> Requirements { get; }
+    public virtual string[] AvailablePlantTypes { get; }
 }
 
 public class Level1 : Level
@@ -45,6 +46,8 @@ public class Level1 : Level
             return ret;
         }
     }
+
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn" };
 }
 
 public class Level2 : Level
@@ -68,4 +71,6 @@ public class Level2 : Level
             return ret;
         }
     }
+
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn", "res://actors/plants/BitterLeaf.tscn" };
 }

@@ -10,7 +10,7 @@ public class FluidNetwork
     public IntVec2[] Pumps;
     public IntVec2[] Outlets;
 
-    const int NUM_FLUID_TYPES = 3;
+    public const int NUM_FLUID_TYPES = 3;
 
     const int PUMP_RATE = 500;
 

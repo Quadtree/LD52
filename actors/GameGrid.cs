@@ -70,17 +70,7 @@ public class GameGrid : Spatial
                 {
                     if (y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (Fluid)f))
                     {
-                        Fluid[x, y - 1, f] += Fluid[x, y, f];
-
-                        if (Fluid[x, y - 1, f] > 1_000_000)
-                        {
-                            var overflow = Fluid[x, y - 1, f] - 1_000_000;
-                            Fluid[x, y, f] = overflow;
-                        }
-                        else
-                        {
-                            Fluid[x, y, f] = 0;
-                        }
+                        MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (Fluid)f, Fluid[x, y, f]);
                     }
                     else
                     {
@@ -194,6 +184,12 @@ public class GameGrid : Spatial
         {
             var overflow = Fluid[to.x, to.y, (int)type] - 1_000_000;
             Fluid[from.x, from.y, (int)type] += overflow;
+            Fluid[to.x, to.y, (int)type] -= overflow;
         }
+
+        AT.True(Fluid[to.x, to.y, (int)type] >= 0);
+        AT.True(Fluid[to.x, to.y, (int)type] <= 1_000_000);
+        AT.True(Fluid[from.x, from.y, (int)type] >= 0);
+        AT.True(Fluid[from.x, from.y, (int)type] <= 1_000_000);
     }
 }

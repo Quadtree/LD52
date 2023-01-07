@@ -16,9 +16,12 @@ public class GameGrid : Spatial
     {
         if (Placing && PlaceableSelected != null)
         {
+            var picked = Picking.PickPointAtCursor(this);
+            GD.Print(picked);
+
             if (PlaceableSelected == Placables.TubWall)
             {
-                Picking.PickPointAtCursor()
+
             }
         }
     }

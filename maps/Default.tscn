@@ -38,6 +38,8 @@ multimesh = SubResource( 2 )
 mesh = SubResource( 3 )
 
 [node name="RigidBody" type="RigidBody" parent="GameGrid"]
+collision_layer = 16385
+collision_mask = 16385
 
 [node name="CollisionShape" type="CollisionShape" parent="GameGrid/RigidBody"]
 shape = SubResource( 6 )

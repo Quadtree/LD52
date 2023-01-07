@@ -18,8 +18,12 @@ public class FluidNetwork
     {
         foreach (var pump in Pumps)
         {
-            var outlet = Util.Choice(Outlets.Where(it => Grid.Fluid[it.x, it.y, (int)FluidType.Red] + Grid.Fluid[it.x, it.y, (int)FluidType.Green] + Grid.Fluid[it.x, it.y, (int)FluidType.Blue] < 900_000));
-            if (outlet == null) return;
+            var outlet = Util.Choice(Outlets.Select(it => (IntVec2?)it).Where(it => Grid.Fluid[it.Value.x, it.Value.y, (int)FluidType.Red] + Grid.Fluid[it.Value.x, it.Value.y, (int)FluidType.Green] + Grid.Fluid[it.Value.x, it.Value.y, (int)FluidType.Blue] < 900_000));
+            if (outlet == null)
+            {
+                GD.Print("No outlet");
+                return;
+            }
 
             var pumpedByThisPump = new int[NUM_FLUID_TYPES];
             var totalPumpedByThis = 0;
@@ -43,7 +47,7 @@ public class FluidNetwork
                 var actualPumpedAmount = pumpedByThisPump[fluidType] * ratioMilis / 1000;
                 Grid.Fluid[pump.x, pump.y, fluidType] -= actualPumpedAmount;
 
-                Grid.Fluid[outlet.x, outlet.y, fluidType] += actualPumpedAmount;
+                Grid.Fluid[outlet.Value.x, outlet.Value.y, fluidType] += actualPumpedAmount;
 
                 //output[fluidType] += actualPumpedAmount;
             }

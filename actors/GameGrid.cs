@@ -410,6 +410,11 @@ public class GameGrid : Spatial
         }
 
         GD.Print($"Discovered {FluidNetworks.Count} fluid networks");
+
+        foreach (var fn in FluidNetworks)
+        {
+            GD.Print($"FN outlets={String.Join(",", fn.Outlets)}");
+        }
     }
 
     public bool IsInBounds(IntVec2 pos)

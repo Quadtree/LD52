@@ -10,6 +10,8 @@ public class GameGrid : Spatial
     const int WIDTH = 16;
     const int HEIGHT = 16;
 
+    bool[,] TubWalls = new bool[WIDTH, HEIGHT];
+
     public override void _Ready()
     {
 
@@ -22,9 +24,16 @@ public class GameGrid : Spatial
             var picked = VectorToTile(Picking.PickPointAtCursor(this));
             GD.Print(picked);
 
-            if (PlaceableSelected == Placables.TubWall)
+            if (picked != null)
             {
+                if (PlaceableSelected == Placables.TubWall)
+                {
+                    if (!TubWalls[picked.Value.x, picked.Value.y])
+                    {
+                        TubWalls[picked.Value.x, picked.Value.y] = true;
 
+                    }
+                }
             }
         }
     }

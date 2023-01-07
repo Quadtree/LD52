@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -33,6 +33,24 @@ color_format = 2
 transform_format = 1
 mesh = SubResource( 11 )
 
+[sub_resource type="PrismMesh" id=12]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="MultiMesh" id=13]
+color_format = 2
+transform_format = 1
+mesh = SubResource( 12 )
+
+[sub_resource type="CylinderMesh" id=14]
+top_radius = 0.25
+bottom_radius = 0.5
+height = 1.0
+
+[sub_resource type="MultiMesh" id=15]
+color_format = 2
+transform_format = 1
+mesh = SubResource( 14 )
+
 [sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 2 )
 uv1_scale = Vector3( 48, 32, 1 )
@@ -63,6 +81,12 @@ multimesh = SubResource( 8 )
 
 [node name="PipeCenters" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 10 )
+
+[node name="Pumps" type="MultiMeshInstance" parent="GameGrid"]
+multimesh = SubResource( 13 )
+
+[node name="Outlets" type="MultiMeshInstance" parent="GameGrid"]
+multimesh = SubResource( 15 )
 
 [node name="MeshInstance" type="MeshInstance" parent="GameGrid"]
 mesh = SubResource( 3 )

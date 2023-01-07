@@ -68,6 +68,7 @@ public class Plant : Spatial
             Grid.GasLevels[(int)FluidType.Blue] += BlueUsedPerTick;
 
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] += RedLiquidProducedPerTick;
+            Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] += GreenLiquidProducedPerTick;
 
             Scale = Vector3.One * ((Growth / (float)MaxGrowth) * .75f + .25f);
         }

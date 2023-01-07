@@ -15,7 +15,7 @@ height = 1.0
 RedUsedPerTick = 100
 BlueUsedPerTick = 100
 RedLiquidProducedPerTick = 100
-MaxRedTolerancePerMili = 250
+MaxRedTolerancePerMili = 100000
 MaxGrowth = 600
 YieldType = 2
 

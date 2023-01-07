@@ -27,6 +27,8 @@ public class GameGrid : Spatial
 
     public List<FluidNetwork> FluidNetworks = new List<FluidNetwork>();
 
+    public Dictionary<Plant.EYieldType, int> Score = new Dictionary<Plant.EYieldType, int>();
+
     public override void _Ready()
     {
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");

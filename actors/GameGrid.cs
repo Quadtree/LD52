@@ -7,6 +7,9 @@ public class GameGrid : Spatial
 
     bool Placing = false;
 
+    const int WIDTH = 16;
+    const int HEIGHT = 16;
+
     public override void _Ready()
     {
 
@@ -51,8 +54,8 @@ public class GameGrid : Spatial
         if (v3 == null) return null;
 
         return new IntVec2(
-            Mathf.RoundToInt(v3.Value.x + 8),
-            Mathf.RoundToInt(v3.Value.y + 8)
+            Mathf.RoundToInt(v3.Value.x + (WIDTH / 2)),
+            Mathf.RoundToInt(v3.Value.y + (HEIGHT / 2))
         );
     }
 }

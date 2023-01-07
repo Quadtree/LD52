@@ -124,7 +124,7 @@ public class Level4 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.FoodLeaf] = 20;
+            ret[Plant.EYieldType.FoodLeaf] = 10;
             return ret;
         }
     }
@@ -133,5 +133,5 @@ public class Level4 : Level
 
     public override bool AllowFilter => true;
 
-    public override string Description => "Now we're running short on green. Luckily, we've discovered a new plant called Muckroot that consumes red and produces green.";
+    public override string Description => "We're out of green, but luckily, we've discovered a new plant called Muckroot that consumes red and produces green.";
 }

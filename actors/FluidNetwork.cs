@@ -21,7 +21,7 @@ public class FluidNetwork
             var outlet = Util.Choice(Outlets.Select(it => (IntVec2?)it).Where(it => Grid.Fluid[it.Value.x, it.Value.y, (int)FluidType.Red] + Grid.Fluid[it.Value.x, it.Value.y, (int)FluidType.Green] + Grid.Fluid[it.Value.x, it.Value.y, (int)FluidType.Blue] < 900_000));
             if (outlet == null)
             {
-                GD.Print("No outlet");
+                //GD.Print("No outlet");
                 return;
             }
 

@@ -182,8 +182,7 @@ public class Level6 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.FoodLeaf] = 20;
-            // 15 is possible...
+            ret[Plant.EYieldType.BitterLeaf] = 20;
             return ret;
         }
     }

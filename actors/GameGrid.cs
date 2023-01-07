@@ -82,6 +82,16 @@ public class GameGrid : Spatial
                             Fluid[x, y, f] = 0;
                         }
                     }
+                    else
+                    {
+                        if (x > 0 && IsTileOpenToFluid(new IntVec2(x - 1, y), (Fluid)f))
+                        {
+                            var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 100;
+
+                            Fluid[x, y, f] -= toFlow;
+                            Fluid[x - 1, y, f] += toFlow;
+                        }
+                    }
                 }
             }
         }

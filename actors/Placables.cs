@@ -1,4 +1,7 @@
 public enum Placables
 {
-    TubWall
+    TubWall,
+    Pipe,
+    Outlet,
+    Pump,
 }

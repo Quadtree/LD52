@@ -34,6 +34,12 @@ public class GameGrid : Spatial
         lq.Multimesh.InstanceCount = WIDTH * HEIGHT;
         lq.Multimesh.VisibleInstanceCount = -1;
 
+        {
+            var mmi = this.FindChildByName<MultiMeshInstance>("PipeCenters");
+            mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
+            mmi.Multimesh.VisibleInstanceCount = 0;
+        }
+
         Level = new Level1();
 
         Level.CreateLevel(this);
@@ -48,13 +54,8 @@ public class GameGrid : Spatial
 
             if (picked != null)
             {
-                if (PlaceableSelected == Placables.TubWall)
-                {
-                    if (!TubWalls[picked.Value.x, picked.Value.y])
-                    {
-                        AddTubWall(picked.Value);
-                    }
-                }
+                if (PlaceableSelected == Placables.TubWall && !TubWalls[picked.Value.x, picked.Value.y]) AddTubWall(picked.Value);
+                if (PlaceableSelected == Placables.Pipe && !Pipe[picked.Value.x, picked.Value.y]) AddPipe(picked.Value);
             }
         }
     }
@@ -165,10 +166,10 @@ public class GameGrid : Spatial
             Placing = false;
         }
 
-        if (@event.IsActionPressed("select_item_0"))
-        {
-            PlaceableSelected = Placables.TubWall;
-        }
+        if (@event.IsActionPressed("select_item_0")) PlaceableSelected = Placables.TubWall;
+        if (@event.IsActionPressed("select_item_1")) PlaceableSelected = Placables.Pipe;
+        if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;
+        if (@event.IsActionPressed("select_item_3")) PlaceableSelected = Placables.Outlet;
     }
 
     public IntVec2? VectorToTile(Vector3? v3)
@@ -207,13 +208,20 @@ public class GameGrid : Spatial
     {
         GD.Print($"Adding pipe wall at {pos}");
 
-        TubWalls[pos.x, pos.y] = true;
+        AT.True(!Pipe[pos.x, pos.y]);
 
-        var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
+        Pipe[pos.x, pos.y] = true;
+
+        AddToMultimesh("PipeCenters", TileToVector(pos));
+    }
+
+    private void AddToMultimesh(string subName, Vector3 pos)
+    {
+        var tw = this.FindChildByName<MultiMeshInstance>(subName);
         var nextInstanceId = tw.Multimesh.VisibleInstanceCount;
         tw.Multimesh.VisibleInstanceCount++;
 
-        tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, TileToVector(pos)));
+        tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, pos));
     }
 
     public void AddFluid(IntVec2 pos, FluidType type, int amt)

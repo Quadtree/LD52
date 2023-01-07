@@ -109,6 +109,8 @@ public class GameGrid : Spatial
                     ), TileToVector(new IntVec2(x, y)) + new Vector3(0, -0.5f + (totalFluid / 1_000_000f) / 2, 0));
 
                     lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
+
+                    lq.Multimesh.SetInstanceColor(GetLiquidInstanceId(new IntVec2(x, y)), new Color(1, 1, 1, 0.5f));
                 }
                 else
                 {

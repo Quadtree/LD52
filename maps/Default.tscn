@@ -1,9 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
 
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+
 [sub_resource type="CubeMesh" id=1]
+material = SubResource( 9 )
 size = Vector3( 1, 1, 1 )
 
 [sub_resource type="MultiMesh" id=2]

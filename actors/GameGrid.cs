@@ -80,7 +80,7 @@ public class GameGrid : Spatial
                 {
                     if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (FluidType)f))
                     {
-                        if (MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Fluid[x, y, f] / 10) > 0)
+                        if (MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Math.Min(Fluid[x, y, f] / 10 + 500, Fluid[x, y, f])) > 0)
                         {
                             LiquidFell[x, y] = true;
                         }

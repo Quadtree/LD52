@@ -1,0 +1,3 @@
+[submodule "cslib"]
+	path = cslib
+	url = git@github.com:Quadtree/godotcslib.git

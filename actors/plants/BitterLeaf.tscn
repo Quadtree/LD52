@@ -16,6 +16,7 @@ GreenUsedPerTick = 200
 BlueUsedPerTick = 200
 RedLiquidProducedPerTick = 70
 MaxGrowth = 1200
+YieldType = 1
 
 [node name="MeshInstance" parent="." index="0"]
 mesh = SubResource( 2 )

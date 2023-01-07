@@ -105,5 +105,33 @@ public class Level3 : Level
 
     public override bool AllowFilter => true;
 
-    public override string Description => "The captain wants some bitterleaf to spice the new pie his chef is working on. Unfortunately, bittlerleaf produces poisonous red, so if left unchecked it will stop growing due to the poison. We'll need to flush the trays regularly.";
+    public override string Description => "All this flushing is using too much water! Fortunately, we've discovered a new block that only admits red. It should allow us to clean the water.";
+}
+
+public class Level4 : Level
+{
+    public override void CreateLevel(GameGrid grid)
+    {
+        base.CreateLevel(grid);
+
+        CreateFluidTub(grid, new IntVec2(10, 1), 1, FluidType.Green);
+
+        CreateFluidTub(grid, new IntVec2(5, 1), 4, FluidType.Blue);
+    }
+
+    public override Dictionary<Plant.EYieldType, int> Requirements
+    {
+        get
+        {
+            var ret = new Dictionary<Plant.EYieldType, int>();
+            ret[Plant.EYieldType.FoodLeaf] = 10;
+            return ret;
+        }
+    }
+
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn", "res://actors/plants/MuckRoot.tscn" };
+
+    public override bool AllowFilter => true;
+
+    public override string Description => "Now we're running short on green. Luckily, we've discovered a new plant called Muckroot that consumes red and produces green.";
 }

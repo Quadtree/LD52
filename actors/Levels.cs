@@ -24,6 +24,7 @@ public class Level
 
     public virtual Dictionary<Plant.EYieldType, int> Requirements { get; }
     public virtual string[] AvailablePlantTypes { get; }
+    public virtual bool AllowFilter => false;
 }
 
 public class Level1 : Level

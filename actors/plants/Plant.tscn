@@ -17,6 +17,7 @@ extents = Vector3( 0.4, 0.8, 0.4 )
 [node name="Plant" type="Spatial"]
 script = ExtResource( 1 )
 BlueUsedPerTick = 800
+MaxRedTolerancePerMili = 100
 MaxGrowth = 180
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

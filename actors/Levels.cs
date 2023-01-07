@@ -25,6 +25,7 @@ public class Level
     public virtual Dictionary<Plant.EYieldType, int> Requirements { get; }
     public virtual string[] AvailablePlantTypes { get; }
     public virtual bool AllowFilter => false;
+    public virtual string Description => "???";
 }
 
 public class Level1 : Level
@@ -51,6 +52,7 @@ public class Level1 : Level
     public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn" };
 }
 
+// you get lots of water, but there's no way to stop it from getting contaminated
 public class Level2 : Level
 {
     public override void CreateLevel(GameGrid grid)
@@ -73,4 +75,32 @@ public class Level2 : Level
     }
 
     public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/BitterLeaf.tscn" };
+
+    public override string Description => "The captain wants some bitterleaf to spice the new pie his chef is working on. Unfortunately, bittlerleaf produces poisonous red, so if left unchecked it will stop growing due to the poison. We'll need to flush the trays regularly.";
+}
+
+public class Level3 : Level
+{
+    public override void CreateLevel(GameGrid grid)
+    {
+        base.CreateLevel(grid);
+
+        CreateFluidTub(grid, new IntVec2(10, 1), 3, FluidType.Green);
+
+        CreateFluidTub(grid, new IntVec2(1, 1), 7, FluidType.Blue);
+    }
+
+    public override Dictionary<Plant.EYieldType, int> Requirements
+    {
+        get
+        {
+            var ret = new Dictionary<Plant.EYieldType, int>();
+            ret[Plant.EYieldType.BitterLeaf] = 5;
+            return ret;
+        }
+    }
+
+    public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/BitterLeaf.tscn" };
+
+    public override string Description => "The captain wants some bitterleaf to spice the new pie his chef is working on. Unfortunately, bittlerleaf produces poisonous red, so if left unchecked it will stop growing due to the poison. We'll need to flush the trays regularly.";
 }

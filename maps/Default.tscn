@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -17,6 +17,9 @@ uv1_scale = Vector3( 48, 32, 1 )
 material = SubResource( 4 )
 size = Vector3( 16, 16, 0.05 )
 
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 8, 8, 0.05 )
+
 [sub_resource type="Environment" id=5]
 background_mode = 1
 background_color = Color( 0.356863, 0.356863, 0.356863, 1 )
@@ -33,6 +36,11 @@ multimesh = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="GameGrid"]
 mesh = SubResource( 3 )
+
+[node name="RigidBody" type="RigidBody" parent="GameGrid"]
+
+[node name="CollisionShape" type="CollisionShape" parent="GameGrid/RigidBody"]
+shape = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 15.0402 )

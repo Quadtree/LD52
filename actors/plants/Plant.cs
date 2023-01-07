@@ -3,17 +3,24 @@ using Godot;
 
 public class Plant : Spatial
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    [Export]
+    public int RedUsedPerTick;
 
-    // Called when the node enters the scene tree for the first time.
+    [Export]
+    public int GreenUsedPerTick;
+
+    [Export]
+    public int BlueUsedPerTick;
+
+    public GameGrid Grid;
+
+    public IntVec2 Pos;
+
     public override void _Ready()
     {
 
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
 
@@ -21,6 +28,7 @@ public class Plant : Spatial
 
     public void Reposition(GameGrid gg, IntVec2 pos)
     {
+        Grid = gg;
         this.SetGlobalLocation(gg.TileToVector(pos));
     }
 }

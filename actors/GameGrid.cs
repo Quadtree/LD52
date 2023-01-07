@@ -12,6 +12,8 @@ public class GameGrid : Spatial
 
     bool[,] TubWalls = new bool[WIDTH, HEIGHT];
 
+    bool[,] LiquidFell = new bool[WIDTH, HEIGHT];
+
     // a full square has a value of 1_000_000
     int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
 
@@ -66,11 +68,14 @@ public class GameGrid : Spatial
         {
             for (var x = 0; x < WIDTH; ++x)
             {
+                LiquidFell[x, y] = false;
+
                 for (var f = 0; f < 3; ++f)
                 {
                     if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (FluidType)f))
                     {
                         MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Fluid[x, y, f]);
+                        LiquidFell[x, y] = true;
                     }
                 }
             }
@@ -112,11 +117,24 @@ public class GameGrid : Spatial
 
                 if (totalFluid > 0)
                 {
-                    var transform = new Transform(new Basis(
-                        new Vector3(1, 0, 0),
-                        new Vector3(0, totalFluid / 1_000_000f, 0),
-                        new Vector3(0, 0, 1)
-                    ), TileToVector(new IntVec2(x, y)) + new Vector3(0, -0.5f + (totalFluid / 1_000_000f) / 2, 0));
+                    Transform transform;
+
+                    if (!LiquidFell[x, y])
+                    {
+                        transform = new Transform(new Basis(
+                            new Vector3(1, 0, 0),
+                            new Vector3(0, totalFluid / 1_000_000f, 0),
+                            new Vector3(0, 0, 1)
+                        ), TileToVector(new IntVec2(x, y)) + new Vector3(0, -0.5f + (totalFluid / 1_000_000f) / 2, 0));
+                    }
+                    else
+                    {
+                        transform = new Transform(new Basis(
+                            new Vector3(totalFluid / 1_000_000f, 0, 0),
+                            new Vector3(0, 1, 0),
+                            new Vector3(0, 0, 1)
+                        ), TileToVector(new IntVec2(x, y)));
+                    }
 
                     lq.Multimesh.SetInstanceTransform(GetLiquidInstanceId(new IntVec2(x, y)), transform);
 

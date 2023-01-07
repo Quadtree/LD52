@@ -14,6 +14,7 @@ public class GameGrid : Spatial
     const int HEIGHT = 16;
 
     bool[,] TubWalls = new bool[WIDTH, HEIGHT];
+    bool[,] FilterWalls = new bool[WIDTH, HEIGHT];
 
     bool[,] LiquidFell = new bool[WIDTH, HEIGHT];
 
@@ -270,13 +271,22 @@ public class GameGrid : Spatial
     {
         GD.Print($"Adding tub wall at {pos}");
 
+        DeleteAll(pos);
+
         TubWalls[pos.x, pos.y] = true;
 
-        var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
-        var nextInstanceId = tw.Multimesh.VisibleInstanceCount;
-        tw.Multimesh.VisibleInstanceCount++;
+        AddToMultimesh("TubWalls", TileToVector(pos));
+    }
 
-        tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, TileToVector(pos)));
+    public void AddFilterWall(IntVec2 pos)
+    {
+        GD.Print($"Adding filter wall at {pos}");
+
+        DeleteAll(pos);
+
+        FilterWalls[pos.x, pos.y] = true;
+
+        AddToMultimesh("FilterWalls", TileToVector(pos));
     }
 
     public void AddPipe(IntVec2 pos)
@@ -284,6 +294,8 @@ public class GameGrid : Spatial
         GD.Print($"Adding pipe at {pos}");
 
         AT.True(!Pipe[pos.x, pos.y]);
+
+        DeleteAll(pos);
 
         Pipe[pos.x, pos.y] = true;
 

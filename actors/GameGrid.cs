@@ -177,7 +177,15 @@ public class GameGrid : Spatial
 
         if (@event.IsActionPressed("place_item"))
         {
-            Placing = true;
+            var picked = Picking.PickObjectAtCursor(this);
+            if (picked != null && picked.GetParent<Plant>() != null && picked.GetParent<Plant>().IsRipe)
+            {
+                picked.GetParent<Plant>().Pick();
+            }
+            else
+            {
+                Placing = true;
+            }
         }
 
         if (@event.IsActionReleased("place_item"))

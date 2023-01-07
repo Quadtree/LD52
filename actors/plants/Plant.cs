@@ -15,11 +15,21 @@ public class Plant : Spatial
     [Export]
     public int MaxGrowth;
 
+    [Export]
+    public EYieldType YieldType;
+
     public GameGrid Grid;
 
     public IntVec2 Pos;
 
     public int Growth;
+
+    public bool IsRipe => Growth >= MaxGrowth;
+
+    public enum EYieldType
+    {
+        FoodLeaf
+    }
 
     public override void _Ready()
     {
@@ -43,6 +53,12 @@ public class Plant : Spatial
     {
         Grid = gg;
         Pos = pos;
+        Scale = Vector3.Zero;
         this.SetGlobalLocation(gg.TileToVector(pos));
+    }
+
+    public void Pick()
+    {
+
     }
 }

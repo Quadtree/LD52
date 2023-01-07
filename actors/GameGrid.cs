@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class GameGrid : Spatial
@@ -22,6 +24,8 @@ public class GameGrid : Spatial
     bool[,] Outlet = new bool[WIDTH, HEIGHT];
 
     Level Level;
+
+    public List<FluidNetwork> FluidNetworks = new List<FluidNetwork>();
 
     public override void _Ready()
     {
@@ -78,7 +82,7 @@ public class GameGrid : Spatial
     {
         base._PhysicsProcess(delta);
 
-        
+
 
         for (var y = 0; y < HEIGHT; ++y)
         {
@@ -337,5 +341,63 @@ public class GameGrid : Spatial
         AT.True(Fluid[from.x, from.y, (int)type] <= 1_000_000);
 
         return amt - overflow;
+    }
+
+    private bool IsPartOfFluidNetwork(IntVec2 pos)
+    {
+        return Pipe[pos.x, pos.y] || Pump[pos.x, pos.y] || Outlet[pos.x, pos.y];
+    }
+
+    private void RecomputeFluidNetworks()
+    {
+        FluidNetworks = new List<FluidNetwork>();
+
+        var claimed = new bool[WIDTH, HEIGHT];
+
+        var deltas = new IntVec2[]{
+            new IntVec2(1, 0),
+            new IntVec2(-1, 0),
+            new IntVec2(0, 1),
+            new IntVec2(0, -1),
+        };
+
+        for (var x = 0; x < WIDTH; ++x)
+        {
+            for (var y = 0; y < WIDTH; ++y)
+            {
+                if (IsPartOfFluidNetwork(new IntVec2(x, y)) && !claimed[x, y])
+                {
+                    var open = new HashSet<IntVec2>();
+                    var closed = new HashSet<IntVec2>();
+
+                    open.Add(new IntVec2(x, y));
+
+                    while (open.Count > 0)
+                    {
+                        var next = open.First();
+                        open.Remove(next);
+                        closed.Add(next);
+
+                        foreach (var delta in deltas)
+                        {
+                            var np = next + delta;
+
+                            if (!open.Contains(np) && !closed.Contains(np))
+                            {
+                                open.Add(np);
+                            }
+                        }
+                    }
+
+                    var network = new FluidNetwork
+                    {
+                        Grid = this,
+                        Outlets = closed.Where(it => Outlet[it.x, it.y]).ToArray(),
+                        Pumps = closed.Where(it => Pump[it.x, it.y]).ToArray(),
+                        Tiles = closed.ToArray(),
+                    };
+                }
+            }
+        }
     }
 }

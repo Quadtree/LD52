@@ -430,9 +430,11 @@ public class GameGrid : Spatial
 
     private bool IsTileOpenToFluid(IntVec2 tile, FluidType fluid)
     {
-        if (!TubWalls[tile.x, tile.y]) return true;
+        if (TubWalls[tile.x, tile.y]) return false;
 
-        return false;
+        if (FilterWalls[tile.x, tile.y] && fluid != FluidType.Red) return false;
+
+        return true;
     }
 
     private int GetLiquidInstanceId(IntVec2 tile)

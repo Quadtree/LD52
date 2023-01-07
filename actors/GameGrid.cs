@@ -88,8 +88,7 @@ public class GameGrid : Spatial
                         {
                             var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 100;
 
-                            Fluid[x, y, f] -= toFlow;
-                            Fluid[x - 1, y, f] += toFlow;
+                            MoveFluidBetween(new IntVec2(x, y), new IntVec2(x - 1, y), (Fluid)f, toFlow);
                         }
                     }
                 }
@@ -184,5 +183,17 @@ public class GameGrid : Spatial
     private int GetLiquidInstanceId(IntVec2 tile)
     {
         return tile.x + tile.y * WIDTH;
+    }
+
+    private void MoveFluidBetween(IntVec2 from, IntVec2 to, Fluid type, int amt)
+    {
+        Fluid[to.x, to.y, (int)type] += amt;
+        Fluid[from.x, from.y, (int)type] -= amt;
+
+        if (Fluid[to.x, to.y, (int)type] > 1_000_000)
+        {
+            var overflow = Fluid[to.x, to.y, (int)type] - 1_000_000;
+            Fluid[from.x, from.y, (int)type] += overflow;
+        }
     }
 }

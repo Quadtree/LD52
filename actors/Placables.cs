@@ -4,4 +4,6 @@ public enum Placables
     Pipe,
     Outlet,
     Pump,
+
+    PlantFoodLeaf,
 }

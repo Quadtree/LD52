@@ -25,6 +25,8 @@ public class GameGrid : Spatial
     bool[,] Pump = new bool[WIDTH, HEIGHT];
     bool[,] Outlet = new bool[WIDTH, HEIGHT];
 
+    int[,] PumpRotorToInstanceIdMapping = new int[WIDTH, HEIGHT];
+
     public int[] GasLevels = new int[FluidNetwork.NUM_FLUID_TYPES];
 
     public Level Level;
@@ -406,7 +408,7 @@ public class GameGrid : Spatial
 
         Pump[pos.x, pos.y] = true;
 
-        AddToMultimesh("Pumps", TileToVector(pos));
+        PumpRotorToInstanceIdMapping[pos.x, pos.y] = AddToMultimesh("Pumps", TileToVector(pos));
         AddToMultimesh("PumpStators", TileToVector(pos));
 
         RecomputeFluidNetworks();
@@ -487,13 +489,15 @@ public class GameGrid : Spatial
         DeleteFilter(pos);
     }
 
-    private void AddToMultimesh(string subName, Vector3 pos)
+    private int AddToMultimesh(string subName, Vector3 pos)
     {
         var tw = this.FindChildByName<MultiMeshInstance>(subName);
         var nextInstanceId = tw.Multimesh.VisibleInstanceCount;
         tw.Multimesh.VisibleInstanceCount++;
 
         tw.Multimesh.SetInstanceTransform(nextInstanceId, new Transform(Quat.Identity, pos));
+
+        return nextInstanceId;
     }
 
     private void RemoveFromMultimesh(string subName, Vector3 pos)
@@ -686,6 +690,14 @@ public class GameGrid : Spatial
 
     public void RotatePump(IntVec2 pos, float rads)
     {
+        var instId = PumpRotorToInstanceIdMapping[pos.x, pos.y];
 
+        var mmi = this.FindChildByName<MultiMeshInstance>("Pumps");
+
+        var curTransform = mmi.Multimesh.GetInstanceTransform(instId);
+
+        var newTransform = curTransform.Rotated(Vector3.Forward, rads);
+
+        mmi.Multimesh.SetInstanceTransform(instId, newTransform);
     }
 }

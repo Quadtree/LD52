@@ -83,6 +83,12 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
+        {
+            var mmi = this.FindChildByName<MultiMeshInstance>("Pipes");
+            mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
+            mmi.Multimesh.VisibleInstanceCount = 0;
+        }
+
         var backWall = this.FindChildByName<MultiMeshInstance>("BackWall");
         backWall.Multimesh.InstanceCount = (WIDTH + 2) * (HEIGHT + 2);
 
@@ -549,6 +555,9 @@ public class GameGrid : Spatial
 
     private void RecomputeFluidNetworks()
     {
+        var pipeMMI = this.FindChildByName<MultiMeshInstance>("Pipes").Multimesh;
+        pipeMMI.VisibleInstanceCount = 0;
+
         FluidNetworks = new List<FluidNetwork>();
 
         var claimed = new bool[WIDTH, HEIGHT];
@@ -584,6 +593,11 @@ public class GameGrid : Spatial
 
                             if (IsInBounds(np) && IsPartOfFluidNetwork(np) && !open.Contains(np) && !closed.Contains(np))
                             {
+                                pipeMMI.SetInstanceTransform(pipeMMI.VisibleInstanceCount, new Transform(Quat.Identity, TileToVector(next)));
+
+                                pipeMMI.VisibleInstanceCount++;
+
+
                                 open.Add(np);
                             }
                         }

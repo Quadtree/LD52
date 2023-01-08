@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/foodleaf.glb-622deb0b5d53d6fd22bb27fb9cdcbf31.scn"
+path="res://.import/foodleaf.glb-c32b358287ec5e1503e983223e2b2682.scn"
 
 [deps]
 
-source_file="res://actors/plants/foodleaf.glb"
-dest_files=[ "res://.import/foodleaf.glb-622deb0b5d53d6fd22bb27fb9cdcbf31.scn" ]
+source_file="res://models/foodleaf.glb"
+dest_files=[ "res://.import/foodleaf.glb-c32b358287ec5e1503e983223e2b2682.scn" ]
 
 [params]
 

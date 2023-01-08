@@ -11,6 +11,7 @@ public class WinLevelDialog : PopupPanel
 
     public override void _Ready()
     {
+        this.FindChildByName<Button>("ContinueButton").Connect("click", this, nameof(ContinueButtonPressed));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,5 +73,10 @@ public class WinLevelDialog : PopupPanel
         }
 
         req.QueueFree();
+    }
+
+    void ContinueButtonPressed()
+    {
+
     }
 }

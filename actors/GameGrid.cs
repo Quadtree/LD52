@@ -409,7 +409,7 @@ public class GameGrid : Spatial
                 }
                 else
                 {
-                    GD.Print($"NOT a spatialmaterial: {mat.GetType()}");
+                    GD.Print($"NOT a spatialmaterial: {mat?.GetType()}");
                 }
             }
 
@@ -555,7 +555,7 @@ public class GameGrid : Spatial
 
     public void DeleteAll(IntVec2 pos)
     {
-        GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos && !it.IsGhost)?.QueueFree();
+        GetTree().CurrentScene.FindChildByPredicate<Plant>(it => (it.Pos == pos || it.Pos == pos + new IntVec2(0, -1)) && !it.IsGhost)?.QueueFree();
 
         DeletePipe(pos);
         DeletePump(pos);
@@ -730,6 +730,7 @@ public class GameGrid : Spatial
 
         if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos && it.SourceFile == plant && !it.IsGhost) != null) return false;
 
+        DeleteAll(pos + new IntVec2(0, 1));
         DeleteAll(pos);
 
         GD.Print($"Placing plant {plant} at {pos}");

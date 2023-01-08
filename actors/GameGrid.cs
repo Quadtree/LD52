@@ -378,7 +378,27 @@ public class GameGrid : Spatial
         PlacementGhost = GD.Load<PackedScene>(srcName).Instance<Spatial>();
         GetTree().CurrentScene.AddChild(PlacementGhost);
 
+        foreach (var it in PlacementGhost.FindChildrenByType<MeshInstance>())
+        {
+            var ns = it.GetSurfaceMaterialCount();
+            GD.Print($"ns={ns}");
+            for (var i = 0; i < ns; ++i)
+            {
+                var mat = it.GetSurfaceMaterial(i);
 
+                if (mat is SpatialMaterial)
+                {
+                    var nMat = (SpatialMaterial)mat.Duplicate(false);
+                    nMat.AlbedoColor = new Color(nMat.AlbedoColor.r, nMat.AlbedoColor.g, nMat.AlbedoColor.b, 0.5f);
+                    it.SetSurfaceMaterial(i, mat);
+                    GD.Print("Replacing surface material");
+                }
+                else
+                {
+                    GD.Print($"NOT a spatialmaterial: {mat.GetType()}");
+                }
+            }
+        }
     }
 
     public IntVec2? VectorToTile(Vector3? v3)

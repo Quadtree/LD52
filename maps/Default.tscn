@@ -167,8 +167,26 @@ size_flags_vertical = 5
 text = "You have won!"
 align = 1
 
-[node name="HighScoreTable" type="GridContainer" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 353.0
-margin_bottom = 18.0
-columns = 2
+margin_bottom = 78.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="Label2" type="Label" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 353.0
+margin_bottom = 96.0
+text = "High Scores"
+align = 1
+
+[node name="Control2" type="Control" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 353.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HighScoreTable" type="GridContainer" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 353.0
+margin_bottom = 114.0

@@ -45,10 +45,19 @@ public class WinLevelDialog : PopupPanel
 
         var scoreArray = (Godot.Collections.Array)resData["scoresForThisLevel"];
 
+        var hst = this.FindChildByName<GridContainer>("HighScoreTable");
+        hst.ClearChildren();
+
         foreach (var rowUntyped in scoreArray)
         {
             var row = (Dictionary)rowUntyped;
             GD.Print($"{row["timeSeconds"]}");
+
+            var lbl = UIUtil.Label($"{row["timeSeconds"]}");
+            lbl.Align = Label.AlignEnum.Center;
+            lbl.SizeFlagsHorizontal = (int)SizeFlags.Expand | (int)SizeFlags.Fill;
+
+            hst.AddChild(lbl);
         }
 
         req.QueueFree();

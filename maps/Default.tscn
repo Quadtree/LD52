@@ -250,7 +250,7 @@ shape = SubResource( 6 )
 multimesh = SubResource( 20 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 15.0402 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 13.0084 )
 near = 1.0
 far = 40.0
 

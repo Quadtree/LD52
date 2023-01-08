@@ -598,6 +598,8 @@ public class GameGrid : Spatial
 
     public void DeleteAll(IntVec2 pos)
     {
+        if (!IsInBounds(pos)) return;
+
         var toDeletePlant = GetTree().CurrentScene.FindChildByPredicate<Plant>(it => (it.Pos == pos || it.Pos == pos + new IntVec2(0, -1)) && !it.IsGhost);
 
         if (toDeletePlant != null)

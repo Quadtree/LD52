@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://fonts/titlefont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://maps/TitleScreen.cs" type="Script" id=2]
+[ext_resource path="res://models/background_mod.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
 
 [node name="WinScreen" type="Control"]
 anchor_right = 1.0
@@ -51,3 +55,15 @@ margin_top = 35.72
 margin_right = -750.0
 margin_bottom = -12.4
 text = "Start Game"
+
+[node name="background" parent="." instance=ExtResource( 3 )]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 2.04454, 0.0166404 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.821985, 0.341038, 0.456107, 0, -0.800878, 0.598828, 0.569509, -0.492228, -0.658309, 1.53061, -4.76837e-07, -3.38218 )
+light_energy = 0.35

@@ -332,7 +332,7 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_0"))
         {
             PlaceableSelected = Placables.TubWall;
-            SetPlacementGhost("res://models/back_wall.glb");
+            SetPlacementGhost("res://models/block.glb");
         }
         if (@event.IsActionPressed("select_item_1")) PlaceableSelected = Placables.Pipe;
         if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;

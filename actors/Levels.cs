@@ -26,6 +26,17 @@ public class Level
     public virtual string[] AvailablePlantTypes { get; }
     public virtual bool AllowFilter => false;
     public virtual string Description => "???";
+
+    public static int CurrentLevel = 0;
+
+    public static readonly Level[] Levels = new Level[]{
+        new Level1(),
+        new Level2(),
+        new Level3(),
+        new Level4(),
+        new Level5(),
+        new Level6(),
+    };
 }
 
 public class Level1 : Level

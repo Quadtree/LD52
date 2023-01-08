@@ -1,6 +1,5 @@
 # TODO
 - Fluid dynamics bug
-- Pump rotor bug
 
 # Completed
 - Winning levels
@@ -25,3 +24,4 @@
 - Sound
 - Music
 - Consider changing name
+- Pump rotor bug

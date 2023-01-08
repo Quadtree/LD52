@@ -35,6 +35,10 @@ public class GameGrid : Spatial
 
     bool WinDialogDisplayed = false;
 
+    public float TimeElapsed = 0;
+
+    public bool Running = true;
+
     public override void _Ready()
     {
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
@@ -121,6 +125,10 @@ public class GameGrid : Spatial
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+
+        if (!Running) return;
+
+        TimeElapsed += delta;
 
         foreach (var fn in FluidNetworks) fn.Update();
 
@@ -598,6 +606,6 @@ public class GameGrid : Spatial
         var dialog = GetTree().CurrentScene.FindChildByName<WinLevelDialog>("WinLevelDialog");
 
         dialog.PopupCentered();
-        dialog.AddScoreAndUpdate(Level.GetType().ToString(), 5.5567547456f);
+        dialog.AddScoreAndUpdate(Level.GetType().ToString(), TimeElapsed);
     }
 }

@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/titlefont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://maps/TitleScreen.cs" type="Script" id=2]
 [ext_resource path="res://models/background_mod.tscn" type="PackedScene" id=3]
+[ext_resource path="res://textures/starfield.png" type="Texture" id=4]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -57,6 +65,10 @@ margin_bottom = -12.4
 text = "Start Game"
 
 [node name="background" parent="." instance=ExtResource( 3 )]
+
+[node name="MeshInstance" type="MeshInstance" parent="background"]
+transform = Transform( -12.6381, 0, 0, 0, 1, 0, 0, 0, -12.6381, 0, -5.62216, 0 )
+mesh = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 2.04454, 0.0166404 )

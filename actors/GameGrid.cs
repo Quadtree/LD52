@@ -16,7 +16,7 @@ public class GameGrid : Spatial
     bool[,] TubWalls = new bool[WIDTH, HEIGHT];
     bool[,] FilterWalls = new bool[WIDTH, HEIGHT];
 
-    bool[,] LiquidFell = new bool[WIDTH, HEIGHT];
+    bool[,,] LiquidFell = new bool[WIDTH, HEIGHT, 3];
 
     // a full square has a value of 1_000_000
     public int[,,] Fluid = new int[WIDTH, HEIGHT, 3];
@@ -269,15 +269,15 @@ public class GameGrid : Spatial
         {
             for (var x = 0; x < WIDTH; ++x)
             {
-                LiquidFell[x, y] = false;
-
                 for (var f = 0; f < 3; ++f)
                 {
+                    LiquidFell[x, y, f] = false;
+
                     if (Fluid[x, y, f] > 0 && y > 0 && IsTileOpenToFluid(new IntVec2(x, y - 1), (FluidType)f))
                     {
                         if (MoveFluidBetween(new IntVec2(x, y), new IntVec2(x, y - 1), (FluidType)f, Math.Min(Fluid[x, y, f] / 10 + 500, Fluid[x, y, f])) > 0)
                         {
-                            LiquidFell[x, y] = true;
+                            LiquidFell[x, y, f] = true;
                         }
                     }
                 }
@@ -287,7 +287,7 @@ public class GameGrid : Spatial
             {
                 for (var f = 0; f < 3; ++f)
                 {
-                    if (!LiquidFell[x, y] && Fluid[x, y, f] > 0 && x > 0 && IsTileOpenToFluid(new IntVec2(x, y), (FluidType)f) && IsTileOpenToFluid(new IntVec2(x - 1, y), (FluidType)f))
+                    if (!LiquidFell[x, y, f] && Fluid[x, y, f] > 0 && x > 0 && IsTileOpenToFluid(new IntVec2(x, y), (FluidType)f) && IsTileOpenToFluid(new IntVec2(x - 1, y), (FluidType)f))
                     {
                         var toFlow = (Fluid[x, y, f] - Fluid[x - 1, y, f]) / 10;
 
@@ -300,7 +300,7 @@ public class GameGrid : Spatial
             {
                 for (var f = 0; f < 3; ++f)
                 {
-                    if (!LiquidFell[x, y] && Fluid[x, y, f] > 0 && x < 15 && IsTileOpenToFluid(new IntVec2(x, y), (FluidType)f) && IsTileOpenToFluid(new IntVec2(x + 1, y), (FluidType)f))
+                    if (!LiquidFell[x, y, f] && Fluid[x, y, f] > 0 && x < 15 && IsTileOpenToFluid(new IntVec2(x, y), (FluidType)f) && IsTileOpenToFluid(new IntVec2(x + 1, y), (FluidType)f))
                     {
                         var toFlow = (Fluid[x, y, f] - Fluid[x + 1, y, f]) / 10;
 
@@ -322,7 +322,9 @@ public class GameGrid : Spatial
                 {
                     Transform transform;
 
-                    if (!LiquidFell[x, y])
+                    if ((!LiquidFell[x, y, 0] && Fluid[x, y, 0] > 0) ||
+                        (!LiquidFell[x, y, 1] && Fluid[x, y, 1] > 0) ||
+                        (!LiquidFell[x, y, 2] && Fluid[x, y, 2] > 0))
                     {
                         transform = new Transform(new Basis(
                             new Vector3(1, 0, 0),

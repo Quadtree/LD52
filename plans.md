@@ -1,4 +1,6 @@
 # TODO
+- Tooltips
+- Level intro screens
 - Win screen
 - Main menu
 - Background

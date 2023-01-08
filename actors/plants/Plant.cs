@@ -131,5 +131,7 @@ public class Plant : Spatial
         GD.Print($"score={string.Join(",", Grid.Score)} / {string.Join(",", Grid.Level.Requirements)}");
 
         Grid.CheckWinConditions();
+
+        Util.SpawnOneShotSound("res://sounds/harvest1.wav", this);
     }
 }

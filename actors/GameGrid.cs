@@ -538,6 +538,7 @@ public class GameGrid : Spatial
             Pipe[pos.x, pos.y] = false;
             RemoveFromMultimesh("PipeCenters", TileToVector(pos));
             RecomputeFluidNetworks();
+            PlayDestroySound();
         }
     }
 
@@ -549,6 +550,7 @@ public class GameGrid : Spatial
             RemoveFromMultimesh("Pumps", TileToVector(pos));
             RemoveFromMultimesh("PumpStators", TileToVector(pos));
             RecomputeFluidNetworks();
+            PlayDestroySound();
         }
     }
 
@@ -559,6 +561,7 @@ public class GameGrid : Spatial
             Outlet[pos.x, pos.y] = false;
             RemoveFromMultimesh("Outlets", TileToVector(pos));
             RecomputeFluidNetworks();
+            PlayDestroySound();
         }
     }
 
@@ -568,6 +571,7 @@ public class GameGrid : Spatial
         {
             TubWalls[pos.x, pos.y] = false;
             RemoveFromMultimesh("TubWalls", TileToVector(pos));
+            PlayDestroySound();
         }
     }
 
@@ -577,12 +581,19 @@ public class GameGrid : Spatial
         {
             FilterWalls[pos.x, pos.y] = false;
             RemoveFromMultimesh("FilterWalls", TileToVector(pos));
+            PlayDestroySound();
         }
     }
 
     public void DeleteAll(IntVec2 pos)
     {
-        GetTree().CurrentScene.FindChildByPredicate<Plant>(it => (it.Pos == pos || it.Pos == pos + new IntVec2(0, -1)) && !it.IsGhost)?.QueueFree();
+        var toDeletePlant = GetTree().CurrentScene.FindChildByPredicate<Plant>(it => (it.Pos == pos || it.Pos == pos + new IntVec2(0, -1)) && !it.IsGhost);
+
+        if (toDeletePlant != null)
+        {
+            toDeletePlant.QueueFree();
+            PlayDestroySound();
+        }
 
         DeletePipe(pos);
         DeletePump(pos);
@@ -594,6 +605,11 @@ public class GameGrid : Spatial
     private void PlayPlacementSound()
     {
         Util.SpawnOneShotSound("res://sounds/place.wav", this);
+    }
+
+    private void PlayDestroySound()
+    {
+        Util.SpawnOneShotSound("res://sounds/destroy.wav", this);
     }
 
     private int AddToMultimesh(string subName, Vector3 pos)

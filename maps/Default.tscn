@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://models/pump_stator.glb" type="PackedScene" id=11]
 [ext_resource path="res://models/filter.glb" type="PackedScene" id=12]
 [ext_resource path="res://ui/ObjectiveStatus.cs" type="Script" id=13]
+[ext_resource path="res://ui/ElapsedTime.cs" type="Script" id=14]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -392,6 +393,7 @@ margin_top = 812.0
 margin_right = 283.0
 margin_bottom = 850.0
 text = "Time: ?.?s"
+script = ExtResource( 14 )
 
 [node name="Button" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2"]
 margin_top = 870.0

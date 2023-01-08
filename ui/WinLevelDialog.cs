@@ -26,6 +26,8 @@ public class WinLevelDialog : PopupPanel
 
         MyTime = seconds;
 
+        GetTree().CurrentScene.FindChildByType<GameGrid>().Running = false;
+
         this.FindChildByName<Label>("YourTime").Text = $"Your time was {seconds:n2}";
 
         req = new HTTPRequest();

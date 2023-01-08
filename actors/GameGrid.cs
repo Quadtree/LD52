@@ -329,18 +329,14 @@ public class GameGrid : Spatial
             Placing = false;
         }
 
-        if (@event.IsActionPressed("select_item_0"))
-        {
-            PlaceableSelected = Placables.TubWall;
-            SetPlacementGhost("res://models/block.glb");
-        }
-        if (@event.IsActionPressed("select_item_1")) PlaceableSelected = Placables.Pipe;
-        if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;
-        if (@event.IsActionPressed("select_item_3")) PlaceableSelected = Placables.Outlet;
-        if (@event.IsActionPressed("select_item_4")) PlaceableSelected = Placables.Plant0;
-        if (@event.IsActionPressed("select_item_5")) PlaceableSelected = Placables.Plant1;
-        if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
-        if (@event.IsActionPressed("select_filter") && Level.AllowFilter) PlaceableSelected = Placables.Filter;
+        if (@event.IsActionPressed("select_item_0")) { PlaceableSelected = Placables.TubWall; SetPlacementGhost("res://models/block.glb"); }
+        if (@event.IsActionPressed("select_item_1")) { PlaceableSelected = Placables.Pipe; SetPlacementGhost("res://models/junction.glb"); }
+        if (@event.IsActionPressed("select_item_2")) { PlaceableSelected = Placables.Pump; SetPlacementGhost("res://models/pump_rotor.glb"); }
+        if (@event.IsActionPressed("select_item_3")) { PlaceableSelected = Placables.Outlet; SetPlacementGhost("res://models/outlet.glb"); }
+        if (@event.IsActionPressed("select_item_4")) { PlaceableSelected = Placables.Plant0; }
+        if (@event.IsActionPressed("select_item_5")) { PlaceableSelected = Placables.Plant1; }
+        if (@event.IsActionPressed("select_item_6")) { PlaceableSelected = Placables.Plant2; }
+        if (@event.IsActionPressed("select_filter") && Level.AllowFilter) { PlaceableSelected = Placables.Filter; }
         if (@event.IsActionPressed("select_harvest")) PlaceableSelected = Placables.Harvest;
 
         if (PlaceableSelected == Placables.TubWall)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://ui/ObjectiveStatus.cs" type="Script" id=13]
 [ext_resource path="res://ui/ElapsedTime.cs" type="Script" id=14]
 [ext_resource path="res://ui/ItemSelectPanel.cs" type="Script" id=15]
+[ext_resource path="res://ui/RestartLevelButton.cs" type="Script" id=16]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -403,6 +404,7 @@ margin_top = 870.0
 margin_right = 283.0
 margin_bottom = 920.0
 text = "Restart Level"
+script = ExtResource( 16 )
 
 [node name="Control" type="Control" parent="UI/HBoxContainer"]
 margin_left = 451.0

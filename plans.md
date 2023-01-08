@@ -1,11 +1,5 @@
 # TODO
-- Placement ghost
 - Headroom for plants
-- Final graphics
-  - Foodleaf
-  - Bitterleaf
-  - Muckroot
-  - Gasleaf
 - Proper UI
 - Win screen
 - Main menu
@@ -18,3 +12,9 @@
 - Winning levels
 - High scores table
 - Keeping track of time and stuff collected on levels
+- Final graphics
+  - Foodleaf
+  - Bitterleaf
+  - Muckroot
+  - Gasleaf
+- Placement ghost

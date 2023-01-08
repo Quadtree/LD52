@@ -247,7 +247,7 @@ multimesh = SubResource( 20 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 15.0402 )
-near = 10.0
+near = 1.0
 far = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -551,4 +551,4 @@ margin_bottom = 698.0
 text = "Start Level"
 
 [node name="background2" parent="." instance=ExtResource( 25 )]
-transform = Transform( -7.43225e-07, 0, -17.003, 0, 17.003, 0, 17.003, 0, -7.43225e-07, 0, -8, 0 )
+transform = Transform( -8.30516e-07, 0, -19, 0, 19, 0, 19, 0, -8.30516e-07, 0, -8, 0 )

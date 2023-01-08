@@ -393,9 +393,10 @@ public class GameGrid : Spatial
                     nMat.VertexColorUseAsAlbedo = false;
                     nMat.FlagsTransparent = true;
 
+                    it.SetSurfaceMaterial(i, nMat);
 
+                    AT.Eq(it.GetActiveMaterial(i).ResourceName, nMat.ResourceName);
 
-                    it.SetSurfaceMaterial(i, new SpatialMaterial());
                     GD.Print($"Replacing surface material {i} on {it}");
                 }
                 else

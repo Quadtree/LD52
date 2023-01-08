@@ -2,9 +2,9 @@
 - Final UI skin
 - Win screen
 - Main menu
+- Background
 - Sound
 - Music
-- CORS headers on high scores table
 
 
 # Completed
@@ -19,3 +19,4 @@
 - Placement ghost
 - Headroom for plants
 - Functional UI
+- CORS headers on high scores table

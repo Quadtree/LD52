@@ -12,7 +12,7 @@ export const handler = async (event) => {
     const incomingData = JSON.parse(event.queryStringParameters.data);
 
     if (!incomingData.level) throw new Error();
-    if (!incomingData.timeSeconds) throw new Error();
+    if (!incomingData.timeSeconds || typeof (incomingData.timeSeconds) !== "number") throw new Error();
 
     let object = {
         levelScores: {}
@@ -39,7 +39,7 @@ export const handler = async (event) => {
 
     if (typeof (object.levelScores[incomingData.level]) === "undefined") object.levelScores[incomingData.level] = [];
 
-    object.levelScores[incomingData.level].push(incomingData);
+    object.levelScores[incomingData.level].push({ timeSeconds: incomingData.timeSeconds });
 
     await s3.putObject({
         Bucket: BUCKET_NAME,

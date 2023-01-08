@@ -146,6 +146,15 @@ public class GameGrid : Spatial
 
     public override void _Process(float delta)
     {
+        if (PlaceableSelected == Placables.Harvest)
+        {
+            Input.SetCustomMouseCursor(GD.Load<Texture>("res://textures/sickle.png"));
+        }
+        else
+        {
+            Input.SetCustomMouseCursor(null);
+        }
+
         if (PlacementGhost != null)
         {
             var picked = VectorToTile(Picking.PickPointAtCursor(this));
@@ -348,7 +357,7 @@ public class GameGrid : Spatial
             if (PlaceableSelected != null)
             {
                 PlaceableSelected = null;
-                PlacementGhost.QueueFree();
+                PlacementGhost?.QueueFree();
                 PlacementGhost = null;
             }
             else

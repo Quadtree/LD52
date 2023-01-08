@@ -62,7 +62,7 @@ public class Level1 : Level
 
     public override string[] AvailablePlantTypes => new string[] { "res://actors/plants/FoodLeaf.tscn" };
 
-    public override string Description => "Welcome to the hydroponics bay! You'll need to grow Foodleaf in this level. Start by using walls to create a tray, then create a pump and pipe to bring water and green to it. Then place Foodleaf in the tray. When it stops growing, click Harvest and then drag over the plants to harvest them. Grow 8 Foodleaf to win.";
+    public override string Description => "Welcome to the hydroponics bay! You'll need to grow Foodleaf in this level. Start by using walls to create a tray, then create a pump and pipe to bring water and green to it. Then place Foodleaf in the tray. When it stops growing, click Harvest and then drag over the plants to harvest them. Grow 8 Foodleaf to win. Right click to remove things.";
 }
 
 // you get lots of water, but there's no way to stop it from getting contaminated

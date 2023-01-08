@@ -360,7 +360,7 @@ public class GameGrid : Spatial
         if (@event.IsActionReleased("deselect_or_destroy")) Destroying = false;
     }
 
-    private void SetPlacementGhostForPlant(int plantId)
+    public void SetPlacementGhostForPlant(int plantId)
     {
         var plantType = Level.AvailablePlantTypes[plantId];
 

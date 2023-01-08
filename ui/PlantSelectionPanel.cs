@@ -22,9 +22,34 @@ public class PlantSelectionPanel : VBoxContainer
                     else
                     {
                         this.FindChildByName<Button>($"Plant{i}").Text = GD.Load<PackedScene>(grid.Level.AvailablePlantTypes[i]).Instance<Plant>().PlantName;
+
+                        this.FindChildByName<Button>($"Plant{i}").Connect("pressed", this, $"Pressed{i}");
+
+
                     }
                 }
             }
         }
+    }
+
+    void Pressed0()
+    {
+        var grid = GetTree().CurrentScene.FindChildByType<GameGrid>();
+        grid.PlaceableSelected = Placables.Plant0;
+        grid.SetPlacementGhostForPlant(0);
+    }
+
+    void Pressed1()
+    {
+        var grid = GetTree().CurrentScene.FindChildByType<GameGrid>();
+        grid.PlaceableSelected = Placables.Plant1;
+        grid.SetPlacementGhostForPlant(1);
+    }
+
+    void Pressed2()
+    {
+        var grid = GetTree().CurrentScene.FindChildByType<GameGrid>();
+        grid.PlaceableSelected = Placables.Plant2;
+        grid.SetPlacementGhostForPlant(2);
     }
 }

@@ -27,7 +27,7 @@ public class GameGrid : Spatial
 
     public int[] GasLevels = new int[FluidNetwork.NUM_FLUID_TYPES];
 
-    Level Level;
+    public Level Level;
 
     public List<FluidNetwork> FluidNetworks = new List<FluidNetwork>();
 
@@ -68,7 +68,7 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
-        Level = new Level6();
+        Level = new Level1();
 
         Level.CreateLevel(this);
     }
@@ -247,7 +247,7 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_5")) PlaceableSelected = Placables.Plant1;
         if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
         if (@event.IsActionPressed("select_filter") && Level.AllowFilter) PlaceableSelected = Placables.Filter;
-        if (@event.IsActionPressed("select_harvest") && Level.AllowFilter) PlaceableSelected = Placables.Harvest;
+        if (@event.IsActionPressed("select_harvest")) PlaceableSelected = Placables.Harvest;
 
         if (@event.IsActionPressed("deselect_or_destroy"))
         {

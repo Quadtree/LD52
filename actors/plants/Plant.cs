@@ -112,6 +112,6 @@ public class Plant : Spatial
 
         Grid.Score[YieldType]++;
 
-        GD.Print($"score={string.Join(",", Grid.Score)}");
+        GD.Print($"score={string.Join(",", Grid.Score)} / {string.Join(",", Grid.Level.Requirements)}");
     }
 }

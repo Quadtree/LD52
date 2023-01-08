@@ -40,7 +40,7 @@ public class GameGrid : Spatial
 
     public float TimeElapsed = 0;
 
-    public bool Running = true;
+    public bool Running = false;
 
     public Spatial PlacementGhost;
 

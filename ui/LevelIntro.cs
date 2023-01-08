@@ -23,6 +23,7 @@ public class LevelIntro : PopupDialog
 
     void StartLevelPressed()
     {
+        GetTree().CurrentScene.FindChildByType<GameGrid>().Running = true;
         QueueFree();
     }
 }

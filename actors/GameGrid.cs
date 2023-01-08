@@ -249,6 +249,12 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_filter") && Level.AllowFilter) PlaceableSelected = Placables.Filter;
         if (@event.IsActionPressed("select_harvest")) PlaceableSelected = Placables.Harvest;
 
+        if (@event.IsActionPressed("cheat_instantly_meet_requirements") && OS.IsDebugBuild())
+        {
+            Score = Level.Requirements.ToArray().ToDictionary(it => it.Key, it => it.Value);
+            CheckWinConditions();
+        }
+
         if (@event.IsActionPressed("deselect_or_destroy"))
         {
             if (PlaceableSelected != null)
@@ -570,5 +576,10 @@ public class GameGrid : Spatial
         plantInstance.SourceFile = plant;
 
         return true;
+    }
+
+    public void CheckWinConditions()
+    {
+
     }
 }

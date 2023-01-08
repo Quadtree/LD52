@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
+[ext_resource path="res://ui/WinLevelDialog.cs" type="Script" id=3]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -142,6 +143,7 @@ omni_shadow_mode = 0
 visible = true
 margin_right = 413.0
 margin_bottom = 376.0
+script = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/WinLevelDialog"]
 anchor_right = 1.0

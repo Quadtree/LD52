@@ -33,6 +33,8 @@ public class GameGrid : Spatial
 
     public Dictionary<Plant.EYieldType, int> Score = new Dictionary<Plant.EYieldType, int>();
 
+    bool WinDialogDisplayed = false;
+
     public override void _Ready()
     {
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
@@ -580,6 +582,22 @@ public class GameGrid : Spatial
 
     public void CheckWinConditions()
     {
+        if (WinDialogDisplayed) return;
 
+        foreach (var cond in Level.Requirements)
+        {
+            if (!Score.ContainsKey(cond.Key) || Score[cond.Key] < cond.Value)
+            {
+                return;
+            }
+        }
+
+        // if we get this far we've won
+        WinDialogDisplayed = true;
+
+        var dialog = GetTree().CurrentScene.FindChildByName<WinLevelDialog>("WinLevelDialog");
+
+        dialog.Popup_();
+        dialog.AddScoreAndUpdate(Level.GetType().ToString(), 5.5f);
     }
 }

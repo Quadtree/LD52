@@ -64,7 +64,7 @@ public class WinLevelDialog : PopupPanel
             lbl.Align = Label.AlignEnum.Center;
             lbl.SizeFlagsHorizontal = (int)SizeFlags.Expand | (int)SizeFlags.Fill;
 
-            if ((float)row["timeSeconds"] == MyTime)
+            if ($"{row["timeSeconds"]:n2}" == $"{MyTime:n2}")
             {
                 lbl.AddColorOverride("font_color", Colors.Yellow);
             }

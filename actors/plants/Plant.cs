@@ -34,6 +34,9 @@ public class Plant : Spatial
     public string PlantName;
 
     [Export]
+    public string PlantDesc;
+
+    [Export]
     public EYieldType YieldType;
 
     public bool Picked;

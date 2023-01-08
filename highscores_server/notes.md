@@ -30,3 +30,11 @@ API endpoint is:
 
     https://k1seztx1s2.execute-api.us-west-2.amazonaws.com/default/ld52-scores?data={%22level%22:%22level1%22,%22timeSeconds%22:55,%22completionState%22:%22goalReached%22,%22harvested%22:{%22FoodLeaf%22:1}}
 
+CORS
+
+CORS must be set up for the API endpoint, like this:
+
+    https://us-west-2.console.aws.amazon.com/apigateway/main/develop/cors
+
+If the API endpoint was created through lambda, auto-deploy will be enabled by default.
+

@@ -42,6 +42,8 @@ public class FluidNetwork
                 ratioMilis = (PUMP_RATE * 1000) / totalPumpedByThis;
             }
 
+            float rot = 0;
+
             for (int fluidType = 0; fluidType < NUM_FLUID_TYPES; ++fluidType)
             {
                 var actualPumpedAmount = pumpedByThisPump[fluidType] * ratioMilis / 1000;
@@ -49,8 +51,12 @@ public class FluidNetwork
 
                 Grid.Fluid[outlet.Value.x, outlet.Value.y, fluidType] += actualPumpedAmount;
 
+                rot += actualPumpedAmount / 4000;
+
                 //output[fluidType] += actualPumpedAmount;
             }
+
+            Grid.RotatePump(pump, rot);
         }
 
         //GD.Print($"output={String.Join(",", output)}");

@@ -683,4 +683,9 @@ public class GameGrid : Spatial
         dialog.PopupCentered();
         dialog.AddScoreAndUpdate(Level.GetType().ToString(), TimeElapsed);
     }
+
+    public void RotatePump(IntVec2 pos, float rads)
+    {
+
+    }
 }

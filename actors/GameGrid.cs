@@ -44,9 +44,14 @@ public class GameGrid : Spatial
         foreach (var it in this.FindChildrenByType<MultiMeshInstance>())
         {
             var meshInstanceChildren = it.FindChildrenByType<MeshInstance>().ToArray();
-            if (meshInstanceChildren.Length == 1 && meshInstanceChildren[0].Visible == false)
+            if (meshInstanceChildren.Length == 1)
             {
                 it.Multimesh.Mesh = meshInstanceChildren[0].Mesh;
+                GD.Print($"Setting {it}'s mesh to {meshInstanceChildren[0].Mesh}");
+            }
+            else
+            {
+                GD.Print($"{it} has no valid mesh source (len={meshInstanceChildren.Length})");
             }
         }
 

@@ -422,7 +422,7 @@ size_flags_vertical = 3
 margin_top = 740.0
 margin_right = 249.0
 margin_bottom = 842.0
-hint_tooltip = "Click this, then drag over ripe plants to harvest them."
+hint_tooltip = "Click this, then drag over ripe plants to harvest them.E"
 text = "Harvest"
 script = ExtResource( 18 )
 

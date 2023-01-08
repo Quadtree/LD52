@@ -146,13 +146,33 @@ public class GameGrid : Spatial
 
     public override void _Process(float delta)
     {
+        // if (PlaceableSelected == Placables.Harvest)
+        // {
+        //     Input.SetCustomMouseCursor(GD.Load<Texture>("res://textures/sickle.png"));
+        // }
+        // else
+        // {
+        //     Input.SetCustomMouseCursor(null);
+        // }
+
+        var sickle = GetTree().CurrentScene.FindChildByName<Spatial>("sickle");
+
         if (PlaceableSelected == Placables.Harvest)
         {
-            Input.SetCustomMouseCursor(GD.Load<Texture>("res://textures/sickle.png"));
+            var picked = Picking.PickPointAtCursor(this);
+            if (picked != null)
+            {
+                GetTree().CurrentScene.FindChildByName<Spatial>("sickle").SetGlobalLocation(picked.Value);
+                sickle.Visible = true;
+            }
+            else
+            {
+                sickle.Visible = false;
+            }
         }
         else
         {
-            Input.SetCustomMouseCursor(null);
+            sickle.Visible = false;
         }
 
         if (PlacementGhost != null)

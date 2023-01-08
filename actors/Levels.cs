@@ -204,5 +204,5 @@ public class Level6 : Level
 
     public override bool AllowFilter => true;
 
-    public override string Description => "We're out of everything! Luckily, we just developed a new plant called Gasleaf that can somehow convert water into red gas. We'll have to use that to create more bitterleaf for the captain's new spicy stew.";
+    public override string Description => "We're out of everything! Luckily, we just developed a new plant called Gaspod that can somehow convert water into red gas. We'll have to use that to create more bitterleaf for the captain's new spicy stew.";
 }

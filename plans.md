@@ -1,5 +1,4 @@
 # TODO
-- Main menu
 - Background
 - Sound
 - Music
@@ -23,3 +22,4 @@
 - Tooltips
 - Level intro screens
 - Win screen
+- Main menu

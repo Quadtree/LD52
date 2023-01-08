@@ -17,6 +17,7 @@ GreenUsedPerTick = 200
 BlueUsedPerTick = 200
 RedLiquidProducedPerTick = 70
 MaxGrowth = 1200
+PlantName = "Bitterleaf"
 YieldType = 1
 
 [node name="MeshInstance" parent="." index="0"]

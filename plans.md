@@ -1,5 +1,6 @@
 # TODO
-- Proper UI
+- Functional UI
+- Final UI skin
 - Win screen
 - Main menu
 - Sound

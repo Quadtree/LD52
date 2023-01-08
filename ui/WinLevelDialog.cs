@@ -7,6 +7,8 @@ public class WinLevelDialog : PopupPanel
 {
     HTTPRequest req;
 
+    float MyTime;
+
     public override void _Ready()
     {
     }
@@ -20,6 +22,10 @@ public class WinLevelDialog : PopupPanel
     public void AddScoreAndUpdate(string levelName, float seconds)
     {
         if (OS.IsDebugBuild()) levelName += "_dev";
+
+        MyTime = seconds;
+
+        this.FindChildByName<Label>("YourTime").Text = $"Your time was {seconds:n2}";
 
         req = new HTTPRequest();
         AddChild(req);
@@ -53,9 +59,14 @@ public class WinLevelDialog : PopupPanel
             var row = (Dictionary)rowUntyped;
             GD.Print($"{row["timeSeconds"]}");
 
-            var lbl = UIUtil.Label($"{row["timeSeconds"]}");
+            var lbl = UIUtil.Label($"{row["timeSeconds"]:n2}");
             lbl.Align = Label.AlignEnum.Center;
             lbl.SizeFlagsHorizontal = (int)SizeFlags.Expand | (int)SizeFlags.Fill;
+
+            if ((float)row["timeSeconds"] == MyTime)
+            {
+                lbl.AddColorOverride("font_color", Colors.Yellow);
+            }
 
             hst.AddChild(lbl);
         }

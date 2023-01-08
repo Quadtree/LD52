@@ -598,6 +598,6 @@ public class GameGrid : Spatial
         var dialog = GetTree().CurrentScene.FindChildByName<WinLevelDialog>("WinLevelDialog");
 
         dialog.Popup_();
-        dialog.AddScoreAndUpdate(Level.GetType().ToString(), 5.5f);
+        dialog.AddScoreAndUpdate(Level.GetType().ToString(), 5.5567547456f);
     }
 }

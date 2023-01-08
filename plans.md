@@ -1,5 +1,4 @@
 # TODO
-- Music
 - Consider changing name
 
 # Completed
@@ -23,3 +22,4 @@
 - Background
 - Try to figure out why the button on the win level dialog is wrong...
 - Sound
+- Music

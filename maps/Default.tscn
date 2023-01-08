@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://ui/button_pressed.tres" type="StyleBox" id=22]
 [ext_resource path="res://ui/button_focus.tres" type="StyleBox" id=23]
 [ext_resource path="res://ui/LevelIntro.cs" type="Script" id=24]
+[ext_resource path="res://models/background_mod.tscn" type="PackedScene" id=25]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -247,7 +248,7 @@ multimesh = SubResource( 20 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598431, 0.0175338, 15.0402 )
 near = 10.0
-far = 20.0
+far = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
@@ -548,3 +549,6 @@ margin_top = 596.0
 margin_right = 634.0
 margin_bottom = 698.0
 text = "Start Level"
+
+[node name="background2" parent="." instance=ExtResource( 25 )]
+transform = Transform( -7.43225e-07, 0, -17.003, 0, 17.003, 0, 17.003, 0, -7.43225e-07, 0, -8, 0 )

@@ -52,7 +52,7 @@ public class FluidNetwork
 
                 Grid.Fluid[outlet.Value.x, outlet.Value.y, fluidType] += actualPumpedAmount;
 
-                rot += actualPumpedAmount / 500f;
+                rot += actualPumpedAmount / 500f / 6f;
 
                 //output[fluidType] += actualPumpedAmount;
             }

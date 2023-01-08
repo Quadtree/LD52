@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://fonts/titlefont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://maps/WinScreen.cs" type="Script" id=2]
+[ext_resource path="res://models/background_mod.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+background_color = Color( 0.356863, 0.356863, 0.356863, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.4
 
 [node name="WinScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -1261, -124 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
@@ -38,3 +46,23 @@ margin_top = 35.72
 margin_right = -750.0
 margin_bottom = -12.4
 text = "Restart"
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.463775, 0.885953, 0, -0.885953, 0.463775, -0.00598431, 0.0175338, -5.21965 )
+near = 1.0
+far = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Spatial"]
+environment = SubResource( 1 )
+
+[node name="OmniLight" type="OmniLight" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.537, 8.3651 )
+light_energy = 1.5
+shadow_enabled = true
+omni_range = 25.0
+omni_shadow_mode = 0
+
+[node name="background2" parent="Spatial" instance=ExtResource( 3 )]
+transform = Transform( -8.30516e-07, 0, -19, 0, 19, 0, 19, 0, -8.30516e-07, 0, -8, 0 )

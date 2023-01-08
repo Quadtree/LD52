@@ -1,10 +1,10 @@
 # TODO
-- Final UI skin
 - Win screen
 - Main menu
 - Background
 - Sound
 - Music
+- Try to figure out why the button on the win level dialog is wrong...
 
 
 # Completed
@@ -20,3 +20,4 @@
 - Headroom for plants
 - Functional UI
 - CORS headers on high scores table
+- Final UI skin

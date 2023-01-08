@@ -141,13 +141,17 @@ omni_shadow_mode = 0
 
 [node name="WinLevelDialog" type="PopupPanel" parent="UI"]
 visible = true
-margin_right = 413.0
-margin_bottom = 376.0
+margin_right = 430.0
+margin_bottom = 508.0
 script = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/WinLevelDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
 custom_constants/margin_right = 30
 custom_constants/margin_top = 30
 custom_constants/margin_left = 30
@@ -156,11 +160,11 @@ custom_constants/margin_bottom = 30
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/WinLevelDialog/MarginContainer"]
 margin_left = 30.0
 margin_top = 30.0
-margin_right = 383.0
-margin_bottom = 346.0
+margin_right = 392.0
+margin_bottom = 470.0
 
 [node name="Label" type="Label" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
-margin_right = 353.0
+margin_right = 362.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -169,7 +173,7 @@ align = 1
 
 [node name="YourTime" type="Label" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 353.0
+margin_right = 362.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -178,24 +182,31 @@ align = 1
 
 [node name="Control" type="Control" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 36.0
-margin_right = 353.0
+margin_right = 362.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 0, 60 )
 
 [node name="Label2" type="Label" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 100.0
-margin_right = 353.0
+margin_right = 362.0
 margin_bottom = 114.0
 text = "High Scores"
 align = 1
 
 [node name="Control2" type="Control" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 118.0
-margin_right = 353.0
+margin_right = 362.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="HighScoreTable" type="GridContainer" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 132.0
-margin_right = 353.0
+margin_right = 362.0
 margin_bottom = 132.0
+
+[node name="ContinueButton" type="Button" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
+margin_top = 136.0
+margin_right = 362.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 0, 40 )
+text = "Continue"

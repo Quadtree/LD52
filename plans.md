@@ -1,5 +1,10 @@
 # TODO
+- Placement ghost
 - Final graphics
+  - Foodleaf
+  - Bitterleaf
+  - Muckroot
+  - Gasleaf
 - Proper UI
 - Win screen
 - Main menu

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -85,6 +85,11 @@ mesh = SubResource( 24 )
 size = Vector3( 1, 1, 1 )
 
 [sub_resource type="MultiMesh" id=13]
+color_format = 2
+transform_format = 1
+mesh = SubResource( 12 )
+
+[sub_resource type="MultiMesh" id=26]
 color_format = 2
 transform_format = 1
 mesh = SubResource( 12 )
@@ -186,13 +191,11 @@ visible = false
 multimesh = SubResource( 13 )
 
 [node name="pump_rotor" parent="GameGrid/Pumps" instance=ExtResource( 10 )]
-visible = false
 
 [node name="PumpStators" type="MultiMeshInstance" parent="GameGrid"]
-multimesh = SubResource( 13 )
+multimesh = SubResource( 26 )
 
 [node name="pump_stator" parent="GameGrid/PumpStators" instance=ExtResource( 11 )]
-visible = false
 
 [node name="Outlets" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 15 )

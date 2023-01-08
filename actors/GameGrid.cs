@@ -77,6 +77,12 @@ public class GameGrid : Spatial
         }
 
         {
+            var mmi = this.FindChildByName<MultiMeshInstance>("PumpStators");
+            mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
+            mmi.Multimesh.VisibleInstanceCount = 0;
+        }
+
+        {
             var mmi = this.FindChildByName<MultiMeshInstance>("Outlets");
             mmi.Multimesh.InstanceCount = WIDTH * HEIGHT;
             mmi.Multimesh.VisibleInstanceCount = 0;
@@ -401,6 +407,7 @@ public class GameGrid : Spatial
         Pump[pos.x, pos.y] = true;
 
         AddToMultimesh("Pumps", TileToVector(pos));
+        AddToMultimesh("PumpStators", TileToVector(pos));
 
         RecomputeFluidNetworks();
     }
@@ -436,6 +443,7 @@ public class GameGrid : Spatial
         {
             Pump[pos.x, pos.y] = false;
             RemoveFromMultimesh("Pumps", TileToVector(pos));
+            RemoveFromMultimesh("PumpStators", TileToVector(pos));
             RecomputeFluidNetworks();
         }
     }

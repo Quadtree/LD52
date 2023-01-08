@@ -598,7 +598,7 @@ public class GameGrid : Spatial
         AT.LessThan(Fluid[pos.x, pos.y, (int)type], 1_000_001);
     }
 
-    private bool IsTileOpenToFluid(IntVec2 tile, FluidType fluid)
+    public bool IsTileOpenToFluid(IntVec2 tile, FluidType fluid)
     {
         if (TubWalls[tile.x, tile.y]) return false;
 

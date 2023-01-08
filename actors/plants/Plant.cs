@@ -69,6 +69,12 @@ public class Plant : Spatial
     {
         if (IsGhost) return;
 
+        if (Pos.y > 0 && Grid.IsTileOpenToFluid(Pos + new IntVec2(0, -1), FluidType.Blue))
+        {
+            QueueFree();
+            return;
+        }
+
         var redPartsPerMili = 0;
         if (Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] > 0)
         {

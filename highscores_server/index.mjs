@@ -22,11 +22,16 @@ export const handler = async (event) => {
     console.log(s3.getObject);
 
     try {
-        object = JSON.parse(await s3.getObject({
+        const response = await s3.getObject({
             Bucket: BUCKET_NAME,
             Key: KEY_NAME,
-        }));
-    } catch (err) { }
+        });
+        const rawText = await response.Body.toArray();
+        console.log(rawText);
+        object = JSON.parse(rawText);
+    } catch (err) {
+        console.log(err);
+    }
 
     if (typeof (object.levelScores[incomingData.level]) === "undefined") object.levelScores[incomingData.level] = [];
 

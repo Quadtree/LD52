@@ -87,19 +87,19 @@ public class GameGrid : Spatial
                 }
                 else if (x == 0)
                 {
-                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(0, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(1.0f, 0.5f, .5f)));
+                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(0, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(.5f, 0.0f, .5f)));
                 }
                 else if (x == WIDTH + 1)
                 {
-                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(0, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(0.0f, 0.5f, .5f)));
+                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(0, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(-.5f, 0.0f, .5f)));
                 }
                 else if (y == 0)
                 {
-                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(0, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(1.0f, 0.5f, .5f)));
+                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(Mathf.Pi / 2, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(0.0f, 0.5f, .5f)));
                 }
                 else if (y == HEIGHT + 1)
                 {
-                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(0, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(0.0f, 0.5f, .5f)));
+                    backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(new Quat(new Vector3(Mathf.Pi / 2, Mathf.Pi / 2, 0)), TileToVector(new IntVec2(x - 1, y - 1)) + new Vector3(0.0f, -0.5f, .5f)));
                 }
                 else
                 {

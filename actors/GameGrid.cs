@@ -519,11 +519,23 @@ public class GameGrid : Spatial
 
         Pump[pos.x, pos.y] = true;
 
-        PumpRotorToInstanceIdMapping[pos.x, pos.y] = AddToMultimesh("Pumps", TileToVector(pos));
+        AddToMultimesh("Pumps", TileToVector(pos));
+        RecomputePumpInstanceIds();
         AddToMultimesh("PumpStators", TileToVector(pos));
 
         RecomputeFluidNetworks();
         PlayPlacementSound();
+    }
+
+    void RecomputePumpInstanceIds()
+    {
+        var mmi = this.FindChildByName<MultiMeshInstance>("Pumps").Multimesh;
+        for (var i = 0; i < mmi.VisibleInstanceCount; ++i)
+        {
+            var tp = VectorToTile(mmi.GetInstanceTransform(i).origin);
+
+            PumpRotorToInstanceIdMapping[tp.Value.x, tp.Value.y] = i;
+        }
     }
 
     public void AddOutlet(IntVec2 pos)
@@ -560,6 +572,7 @@ public class GameGrid : Spatial
             Pump[pos.x, pos.y] = false;
             RemoveFromMultimesh("Pumps", TileToVector(pos));
             RemoveFromMultimesh("PumpStators", TileToVector(pos));
+            RecomputePumpInstanceIds();
             RecomputeFluidNetworks();
             PlayDestroySound();
         }

@@ -10,7 +10,7 @@ public class TitleScreen : Control
 
     void StartButtonPressed()
     {
-        Level.CurrentLevel = 0;
+        Level.CurrentLevel = 4;
         GetTree().ChangeScene("res://maps/Default.tscn");
     }
 }

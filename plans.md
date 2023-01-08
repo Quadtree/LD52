@@ -1,5 +1,6 @@
 # TODO
-- Consider changing name
+- Fluid dynamics bug
+- Pump rotor bug
 
 # Completed
 - Winning levels
@@ -23,3 +24,4 @@
 - Try to figure out why the button on the win level dialog is wrong...
 - Sound
 - Music
+- Consider changing name

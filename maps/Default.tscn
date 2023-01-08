@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -19,6 +19,10 @@
 [ext_resource path="res://ui/PlantSelectionPanel.cs" type="Script" id=17]
 [ext_resource path="res://ui/HarvestButton.cs" type="Script" id=18]
 [ext_resource path="res://textures/window.png" type="Texture" id=19]
+[ext_resource path="res://ui/button_normal.tres" type="StyleBox" id=20]
+[ext_resource path="res://ui/button_hover.tres" type="StyleBox" id=21]
+[ext_resource path="res://ui/button_pressed.tres" type="StyleBox" id=22]
+[ext_resource path="res://ui/button_focus.tres" type="StyleBox" id=23]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -499,4 +503,8 @@ margin_top = 232.0
 margin_right = 261.0
 margin_bottom = 334.0
 rect_min_size = Vector2( 0, 40 )
+custom_styles/hover = ExtResource( 21 )
+custom_styles/pressed = ExtResource( 22 )
+custom_styles/focus = ExtResource( 23 )
+custom_styles/normal = ExtResource( 20 )
 text = "Continue"

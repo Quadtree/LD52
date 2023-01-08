@@ -105,6 +105,7 @@ surfaces/1 = {
 }
 
 [sub_resource type="MultiMesh" id=20]
+transform_format = 1
 mesh = SubResource( 19 )
 
 [sub_resource type="Environment" id=5]

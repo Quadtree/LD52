@@ -74,6 +74,17 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
+        var backWall = this.FindChildByName<MultiMeshInstance>("BackWall");
+        backWall.Multimesh.InstanceCount = WIDTH * HEIGHT;
+
+        for (var x = 0; x < WIDTH; ++x)
+        {
+            for (var y = 0; y < HEIGHT; ++y)
+            {
+                backWall.Multimesh.SetInstanceTransform(x + y * WIDTH, new Transform(Quat.Identity, TileToVector(new IntVec2(x, y)) + new Vector3(0.5f, 0.5f, 0.0f)));
+            }
+        }
+
         Level = Level.Levels[Level.CurrentLevel];
 
         Level.CreateLevel(this);

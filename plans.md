@@ -1,5 +1,4 @@
 # TODO
-- Functional UI
 - Final UI skin
 - Win screen
 - Main menu
@@ -19,3 +18,4 @@
   - Gasleaf
 - Placement ghost
 - Headroom for plants
+- Functional UI

@@ -42,6 +42,8 @@ public class GameGrid : Spatial
 
     public bool Running = true;
 
+    public Spatial PlacementGhost;
+
     public override void _Ready()
     {
         foreach (var it in this.FindChildrenByType<MultiMeshInstance>())
@@ -144,6 +146,21 @@ public class GameGrid : Spatial
 
     public override void _Process(float delta)
     {
+        if (PlacementGhost != null)
+        {
+            var picked = VectorToTile(Picking.PickPointAtCursor(this));
+
+            if (picked != null)
+            {
+                PlacementGhost.SetGlobalLocation(TileToVector(picked.Value));
+                PlacementGhost.Visible = true;
+            }
+            else
+            {
+                PlacementGhost.Visible = false;
+            }
+        }
+
         if (Placing && PlaceableSelected == Placables.Harvest)
         {
             var picked = Picking.PickObjectAtCursor(this);
@@ -312,7 +329,11 @@ public class GameGrid : Spatial
             Placing = false;
         }
 
-        if (@event.IsActionPressed("select_item_0")) PlaceableSelected = Placables.TubWall;
+        if (@event.IsActionPressed("select_item_0"))
+        {
+            PlaceableSelected = Placables.TubWall;
+            SetPlacementGhost("res://models/back_wall.glb");
+        }
         if (@event.IsActionPressed("select_item_1")) PlaceableSelected = Placables.Pipe;
         if (@event.IsActionPressed("select_item_2")) PlaceableSelected = Placables.Pump;
         if (@event.IsActionPressed("select_item_3")) PlaceableSelected = Placables.Outlet;
@@ -321,6 +342,11 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_6")) PlaceableSelected = Placables.Plant2;
         if (@event.IsActionPressed("select_filter") && Level.AllowFilter) PlaceableSelected = Placables.Filter;
         if (@event.IsActionPressed("select_harvest")) PlaceableSelected = Placables.Harvest;
+
+        if (PlaceableSelected == Placables.TubWall)
+        {
+
+        }
 
         if (@event.IsActionPressed("cheat_instantly_meet_requirements") && OS.IsDebugBuild())
         {
@@ -333,6 +359,8 @@ public class GameGrid : Spatial
             if (PlaceableSelected != null)
             {
                 PlaceableSelected = null;
+                PlacementGhost.QueueFree();
+                PlacementGhost = null;
             }
             else
             {
@@ -341,6 +369,16 @@ public class GameGrid : Spatial
         }
 
         if (@event.IsActionReleased("deselect_or_destroy")) Destroying = false;
+    }
+
+    private void SetPlacementGhost(string srcName)
+    {
+        if (PlacementGhost != null) PlacementGhost.QueueFree();
+
+        PlacementGhost = GD.Load<PackedScene>(srcName).Instance<Spatial>();
+        GetTree().CurrentScene.AddChild(PlacementGhost);
+
+
     }
 
     public IntVec2? VectorToTile(Vector3? v3)

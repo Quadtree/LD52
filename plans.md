@@ -1,5 +1,4 @@
 # TODO
-- Add tooltips to constructables
 
 # Completed
 - Winning levels
@@ -28,3 +27,4 @@
 - Fluid dynamics bug
 - Make pumps partially run
 - Make it more obvious when plants are ripe
+- Add tooltips to constructables

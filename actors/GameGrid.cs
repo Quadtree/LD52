@@ -598,11 +598,16 @@ public class GameGrid : Spatial
 
                             if (IsInBounds(np) && IsPartOfFluidNetwork(np) && !open.Contains(np) && !closed.Contains(np))
                             {
-                                pipeMMI.SetInstanceTransform(pipeMMI.VisibleInstanceCount, new Transform(Quat.Identity, (TileToVector(next) + TileToVector(np)) / 2));
+                                if (next.y != np.y)
+                                {
+                                    pipeMMI.SetInstanceTransform(pipeMMI.VisibleInstanceCount, new Transform(Quat.Identity, (TileToVector(next) + TileToVector(np)) / 2));
+                                }
+                                else
+                                {
+                                    pipeMMI.SetInstanceTransform(pipeMMI.VisibleInstanceCount, new Transform(new Quat(new Vector3(0, 0, Mathf.Pi / 2)), (TileToVector(next) + TileToVector(np)) / 2));
+                                }
 
                                 pipeMMI.VisibleInstanceCount++;
-
-
                                 open.Add(np);
                             }
                         }

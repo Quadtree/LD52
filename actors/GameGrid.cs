@@ -370,6 +370,8 @@ public class GameGrid : Spatial
     private void SetPlacementGhostForPlant(int plantId)
     {
         var plantType = Level.AvailablePlantTypes[plantId];
+
+        SetPlacementGhost(plantType);
     }
 
     private void SetPlacementGhost(string srcName)
@@ -378,6 +380,11 @@ public class GameGrid : Spatial
 
         PlacementGhost = GD.Load<PackedScene>(srcName).Instance<Spatial>();
         GetTree().CurrentScene.AddChild(PlacementGhost);
+
+        if (PlacementGhost is Plant)
+        {
+            ((Plant)PlacementGhost).IsGhost = true;
+        }
 
         foreach (var it in PlacementGhost.FindChildrenByType<MeshInstance>())
         {
@@ -548,7 +555,7 @@ public class GameGrid : Spatial
 
     public void DeleteAll(IntVec2 pos)
     {
-        GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos)?.QueueFree();
+        GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos && !it.IsGhost)?.QueueFree();
 
         DeletePipe(pos);
         DeletePump(pos);
@@ -721,7 +728,7 @@ public class GameGrid : Spatial
     {
         var vecPos = TileToVector(pos);
 
-        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos && it.SourceFile == plant) != null) return false;
+        if (GetTree().CurrentScene.FindChildByPredicate<Plant>(it => it.Pos == pos && it.SourceFile == plant && !it.IsGhost) != null) return false;
 
         DeleteAll(pos);
 

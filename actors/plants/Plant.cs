@@ -45,6 +45,8 @@ public class Plant : Spatial
 
     public string SourceFile;
 
+    public bool IsGhost;
+
     public enum EYieldType
     {
         FoodLeaf,
@@ -59,6 +61,8 @@ public class Plant : Spatial
 
     public override void _PhysicsProcess(float delta)
     {
+        if (IsGhost) return;
+
         var redPartsPerMili = 0;
         if (Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Red] > 0)
         {

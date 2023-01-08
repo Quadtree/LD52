@@ -322,7 +322,7 @@ margin_bottom = 224.0
 [node name="ContinueButton" type="Button" parent="UI/WinLevelDialog/MarginContainer/VBoxContainer"]
 margin_top = 232.0
 margin_right = 406.0
-margin_bottom = 354.0
+margin_bottom = 334.0
 rect_min_size = Vector2( 0, 40 )
 text = "Continue"
 
@@ -333,7 +333,7 @@ mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer"]
 margin_right = 443.0
-margin_bottom = 1228.0
+margin_bottom = 1108.0
 custom_constants/margin_right = 80
 custom_constants/margin_top = 80
 custom_constants/margin_left = 80
@@ -343,12 +343,12 @@ custom_constants/margin_bottom = 80
 margin_left = 80.0
 margin_top = 80.0
 margin_right = 363.0
-margin_bottom = 1148.0
+margin_bottom = 1028.0
 custom_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2"]
 margin_right = 283.0
-margin_bottom = 848.0
+margin_bottom = 748.0
 custom_constants/separation = 40
 script = ExtResource( 15 )
 
@@ -360,64 +360,64 @@ text = "Placable Selection"
 [node name="WallButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 78.0
 margin_right = 283.0
-margin_bottom = 200.0
+margin_bottom = 180.0
 text = "Wall"
 
 [node name="PipeButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 240.0
+margin_top = 220.0
 margin_right = 283.0
-margin_bottom = 362.0
+margin_bottom = 322.0
 text = "Pipe"
 
 [node name="PumpButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 402.0
+margin_top = 362.0
 margin_right = 283.0
-margin_bottom = 524.0
+margin_bottom = 464.0
 text = "Pump"
 
 [node name="OutletButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 564.0
+margin_top = 504.0
 margin_right = 283.0
-margin_bottom = 686.0
+margin_bottom = 606.0
 text = "Outlet "
 
 [node name="FilterButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 726.0
+margin_top = 646.0
 margin_right = 283.0
-margin_bottom = 848.0
+margin_bottom = 748.0
 text = "Filter "
 
 [node name="Control" type="Control" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2"]
-margin_top = 868.0
+margin_top = 768.0
 margin_right = 283.0
-margin_bottom = 868.0
+margin_bottom = 768.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2"]
-margin_top = 888.0
+margin_top = 788.0
 margin_right = 283.0
-margin_bottom = 926.0
+margin_bottom = 826.0
 text = "Time: ?.?s"
 script = ExtResource( 14 )
 
 [node name="Button" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2"]
-margin_top = 946.0
+margin_top = 846.0
 margin_right = 283.0
-margin_bottom = 1068.0
+margin_bottom = 948.0
 text = "Restart Level"
 script = ExtResource( 16 )
 
 [node name="Control" type="Control" parent="UI/HBoxContainer"]
 margin_left = 451.0
 margin_right = 1503.0
-margin_bottom = 1228.0
+margin_bottom = 1108.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/HBoxContainer"]
 margin_left = 1511.0
 margin_right = 1920.0
-margin_bottom = 1228.0
+margin_bottom = 1108.0
 custom_constants/margin_right = 80
 custom_constants/margin_top = 80
 custom_constants/margin_left = 80
@@ -427,12 +427,12 @@ custom_constants/margin_bottom = 80
 margin_left = 80.0
 margin_top = 80.0
 margin_right = 329.0
-margin_bottom = 1148.0
+margin_bottom = 1028.0
 custom_constants/separation = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3"]
 margin_right = 249.0
-margin_bottom = 524.0
+margin_bottom = 464.0
 custom_constants/separation = 40
 script = ExtResource( 17 )
 
@@ -444,39 +444,39 @@ text = "Plant Selection"
 [node name="Plant0" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
 margin_top = 78.0
 margin_right = 249.0
-margin_bottom = 200.0
+margin_bottom = 180.0
 text = "Plant0"
 
 [node name="Plant1" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
-margin_top = 240.0
+margin_top = 220.0
 margin_right = 249.0
-margin_bottom = 362.0
+margin_bottom = 322.0
 text = "Plant1"
 
 [node name="Plant2" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
-margin_top = 402.0
+margin_top = 362.0
 margin_right = 249.0
-margin_bottom = 524.0
+margin_bottom = 464.0
 text = "Plant2"
 
 [node name="Control" type="Control" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3"]
-margin_top = 584.0
+margin_top = 524.0
 margin_right = 249.0
-margin_bottom = 780.0
+margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3"]
-margin_top = 840.0
+margin_top = 740.0
 margin_right = 249.0
-margin_bottom = 962.0
+margin_bottom = 842.0
 text = "Harvest"
 script = ExtResource( 18 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3"]
-margin_top = 1022.0
+margin_top = 902.0
 margin_right = 249.0
-margin_bottom = 1068.0
+margin_bottom = 948.0
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer2"]
 margin_right = 249.0

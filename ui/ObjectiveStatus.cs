@@ -24,7 +24,9 @@ public class ObjectiveStatus : GridContainer
 
             foreach (var it in Keys)
             {
-                AddChild(UIUtil.Label(it.ToString()));
+                if (it == Plant.EYieldType.FoodLeaf) AddChild(UIUtil.Label("Foodleaf"));
+                if (it == Plant.EYieldType.BitterLeaf) AddChild(UIUtil.Label("Bitterleaf"));
+
                 AddChild(UIUtil.Label("?/?"));
             }
         }

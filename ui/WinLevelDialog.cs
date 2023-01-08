@@ -44,34 +44,41 @@ public class WinLevelDialog : PopupPanel
 
     void RequestCompleted(int result, int responseCode, string[] headers, byte[] body)
     {
-        GD.Print($"Got response code {responseCode}");
-
-        var data = JSON.Parse(Encoding.UTF8.GetString(body));
-
-        GD.Print(data.Result?.GetType());
-
-        var resData = (Dictionary)data.Result;
-
-        var scoreArray = (Godot.Collections.Array)resData["scoresForThisLevel"];
-
-        var hst = this.FindChildByName<GridContainer>("HighScoreTable");
-        hst.ClearChildren();
-
-        foreach (var rowUntyped in scoreArray)
+        try
         {
-            var row = (Dictionary)rowUntyped;
-            GD.Print($"{row["timeSeconds"]}");
+            GD.Print($"Got response code {responseCode}");
 
-            var lbl = UIUtil.Label($"{row["timeSeconds"]:n2}");
-            lbl.Align = Label.AlignEnum.Center;
-            lbl.SizeFlagsHorizontal = (int)SizeFlags.Expand | (int)SizeFlags.Fill;
+            var data = JSON.Parse(Encoding.UTF8.GetString(body));
 
-            if ($"{row["timeSeconds"]:n2}" == $"{MyTime:n2}")
+            GD.Print(data.Result?.GetType());
+
+            var resData = (Dictionary)data.Result;
+
+            var scoreArray = (Godot.Collections.Array)resData["scoresForThisLevel"];
+
+            var hst = this.FindChildByName<GridContainer>("HighScoreTable");
+            hst.ClearChildren();
+
+            foreach (var rowUntyped in scoreArray)
             {
-                lbl.AddColorOverride("font_color", Colors.Yellow);
-            }
+                var row = (Dictionary)rowUntyped;
+                GD.Print($"{row["timeSeconds"]}");
 
-            hst.AddChild(lbl);
+                var lbl = UIUtil.Label($"{row["timeSeconds"]:n2}");
+                lbl.Align = Label.AlignEnum.Center;
+                lbl.SizeFlagsHorizontal = (int)SizeFlags.Expand | (int)SizeFlags.Fill;
+
+                if ($"{row["timeSeconds"]:n2}" == $"{MyTime:n2}")
+                {
+                    lbl.AddColorOverride("font_color", Colors.Yellow);
+                }
+
+                hst.AddChild(lbl);
+            }
+        }
+        catch (Exception ex)
+        {
+            GD.PushWarning($"Unexpected error processing highscores response: {ex}");
         }
 
         req.QueueFree();

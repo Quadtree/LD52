@@ -43,12 +43,14 @@ export const handler = async (event) => {
         Body: JSON.stringify(object),
     });
 
+    object.levelScores[incomingData.level].sort((a, b) => a.timeSeconds - b.timeSeconds)
+
     const response = {
         statusCode: 200,
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ scoresForThisLevel: object.levelScores[incomingData.level] }),
+        body: JSON.stringify({ scoresForThisLevel: object.levelScores[incomingData.level].slice(0, 10) }),
     };
     return response;
 };

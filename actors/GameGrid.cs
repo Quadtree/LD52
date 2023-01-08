@@ -339,11 +339,6 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_filter") && Level.AllowFilter) { PlaceableSelected = Placables.Filter; }
         if (@event.IsActionPressed("select_harvest")) PlaceableSelected = Placables.Harvest;
 
-        if (PlaceableSelected == Placables.TubWall)
-        {
-
-        }
-
         if (@event.IsActionPressed("cheat_instantly_meet_requirements") && OS.IsDebugBuild())
         {
             Score = Level.Requirements.ToArray().ToDictionary(it => it.Key, it => it.Value);

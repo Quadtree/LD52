@@ -109,7 +109,7 @@ public class Level3 : Level
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
             ret[Plant.EYieldType.FoodLeaf] = 5;
-            ret[Plant.EYieldType.BitterLeaf] = 10;
+            ret[Plant.EYieldType.BitterLeaf] = 5;
             return ret;
         }
     }
@@ -137,7 +137,7 @@ public class Level4 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.FoodLeaf] = 10;
+            ret[Plant.EYieldType.FoodLeaf] = 5;
             // 15 is possible...
             return ret;
         }
@@ -168,7 +168,7 @@ public class Level5 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.BitterLeaf] = 20;
+            ret[Plant.EYieldType.BitterLeaf] = 10;
             // 15 is possible...
             return ret;
         }

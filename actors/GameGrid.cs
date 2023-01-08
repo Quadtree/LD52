@@ -593,7 +593,7 @@ public class GameGrid : Spatial
 
                             if (IsInBounds(np) && IsPartOfFluidNetwork(np) && !open.Contains(np) && !closed.Contains(np))
                             {
-                                pipeMMI.SetInstanceTransform(pipeMMI.VisibleInstanceCount, new Transform(Quat.Identity, TileToVector(next)));
+                                pipeMMI.SetInstanceTransform(pipeMMI.VisibleInstanceCount, new Transform(Quat.Identity, (TileToVector(next) + TileToVector(np)) / 2));
 
                                 pipeMMI.VisibleInstanceCount++;
 

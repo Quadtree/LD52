@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -183,6 +183,9 @@ margin_left = 42.0
 margin_right = 42.0
 margin_top = 32.0
 margin_bottom = 32.0
+
+[sub_resource type="CubeMesh" id=28]
+size = Vector3( 0.1, 0.1, 0.1 )
 
 [node name="Default" type="Spatial"]
 
@@ -554,5 +557,11 @@ text = "Start Level"
 [node name="background2" parent="." instance=ExtResource( 25 )]
 transform = Transform( -8.30516e-07, 0, -19, 0, 19, 0, 19, 0, -8.30516e-07, 0, -8, 0 )
 
-[node name="sickle" parent="." instance=ExtResource( 26 )]
+[node name="SickleRoot" type="Spatial" parent="."]
+
+[node name="sickle" parent="SickleRoot" instance=ExtResource( 26 )]
+transform = Transform( -0.568461, -0.82271, 0, 0.82271, -0.568461, 0, 0, 0, 1, 0.910485, 0.759187, -1.19209e-07 )
+
+[node name="MeshInstance" type="MeshInstance" parent="SickleRoot"]
 visible = false
+mesh = SubResource( 28 )

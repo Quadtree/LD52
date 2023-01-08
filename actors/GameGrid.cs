@@ -155,14 +155,14 @@ public class GameGrid : Spatial
         //     Input.SetCustomMouseCursor(null);
         // }
 
-        var sickle = GetTree().CurrentScene.FindChildByName<Spatial>("sickle");
+        var sickle = GetTree().CurrentScene.FindChildByName<Spatial>("SickleRoot");
 
         if (PlaceableSelected == Placables.Harvest)
         {
             var picked = Picking.PickPointAtCursor(this);
             if (picked != null)
             {
-                GetTree().CurrentScene.FindChildByName<Spatial>("sickle").SetGlobalLocation(picked.Value);
+                sickle.SetGlobalLocation(picked.Value);
                 sickle.Visible = true;
             }
             else

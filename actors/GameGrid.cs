@@ -604,12 +604,12 @@ public class GameGrid : Spatial
 
     private void PlayPlacementSound()
     {
-        Util.SpawnOneShotSound("res://sounds/place.wav", this);
+        if (Running) Util.SpawnOneShotSound("res://sounds/place.wav", this, -10);
     }
 
     private void PlayDestroySound()
     {
-        Util.SpawnOneShotSound("res://sounds/destroy.wav", this);
+        if (Running) Util.SpawnOneShotSound("res://sounds/destroy.wav", this);
     }
 
     private int AddToMultimesh(string subName, Vector3 pos)

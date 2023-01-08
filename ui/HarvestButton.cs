@@ -11,6 +11,8 @@ public class HarvestButton : Button
     void OnPressed()
     {
         var grid = GetTree().CurrentScene.FindChildByType<GameGrid>();
+        grid.PlacementGhost?.QueueFree();
+        grid.PlacementGhost = null;
         grid.PlaceableSelected = Placables.Harvest;
     }
 }

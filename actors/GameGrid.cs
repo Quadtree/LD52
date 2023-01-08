@@ -384,7 +384,7 @@ public class GameGrid : Spatial
             GD.Print($"ns={ns}");
             for (var i = 0; i < ns; ++i)
             {
-                var mat = it.Mesh.SurfaceGetMaterial(i);
+                var mat = it.GetActiveMaterial(i);
 
                 if (mat is SpatialMaterial)
                 {
@@ -396,13 +396,15 @@ public class GameGrid : Spatial
 
 
                     it.SetSurfaceMaterial(i, new SpatialMaterial());
-                    GD.Print("Replacing surface material");
+                    GD.Print($"Replacing surface material {i} on {it}");
                 }
                 else
                 {
                     GD.Print($"NOT a spatialmaterial: {mat.GetType()}");
                 }
             }
+
+            it.MaterialOverride = null;
         }
     }
 

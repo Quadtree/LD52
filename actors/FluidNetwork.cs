@@ -22,7 +22,8 @@ public class FluidNetwork
             if (outlet == null)
             {
                 //GD.Print("No outlet");
-                return;
+                Grid.RotatePump(pump, 0f);
+                continue;
             }
 
             var pumpedByThisPump = new int[NUM_FLUID_TYPES];

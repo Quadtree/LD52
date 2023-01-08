@@ -195,7 +195,7 @@ public class Level6 : Level
         get
         {
             var ret = new Dictionary<Plant.EYieldType, int>();
-            ret[Plant.EYieldType.BitterLeaf] = 20;
+            ret[Plant.EYieldType.BitterLeaf] = 10;
             return ret;
         }
     }

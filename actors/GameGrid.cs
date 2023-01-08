@@ -70,7 +70,7 @@ public class GameGrid : Spatial
             mmi.Multimesh.VisibleInstanceCount = 0;
         }
 
-        Level = new Level1();
+        Level = Level.Levels[Level.CurrentLevel];
 
         Level.CreateLevel(this);
     }
@@ -597,7 +597,7 @@ public class GameGrid : Spatial
 
         var dialog = GetTree().CurrentScene.FindChildByName<WinLevelDialog>("WinLevelDialog");
 
-        dialog.Popup_();
+        dialog.PopupCentered();
         dialog.AddScoreAndUpdate(Level.GetType().ToString(), 5.5567547456f);
     }
 }

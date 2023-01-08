@@ -11,7 +11,7 @@ public class WinLevelDialog : PopupPanel
 
     public override void _Ready()
     {
-        this.FindChildByName<Button>("ContinueButton").Connect("click", this, nameof(ContinueButtonPressed));
+        this.FindChildByName<Button>("ContinueButton").Connect("pressed", this, nameof(ContinueButtonPressed));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -77,6 +77,15 @@ public class WinLevelDialog : PopupPanel
 
     void ContinueButtonPressed()
     {
+        Level.CurrentLevel++;
 
+        if (Level.CurrentLevel >= Level.Levels.Length)
+        {
+            // @TODO: show final victory screen
+        }
+        else
+        {
+            GetTree().ChangeScene("res://maps/Default.tscn");
+        }
     }
 }

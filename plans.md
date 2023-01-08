@@ -1,7 +1,4 @@
 # TODO
-- Tooltips
-- Level intro screens
-- Win screen
 - Main menu
 - Background
 - Sound
@@ -23,3 +20,6 @@
 - Functional UI
 - CORS headers on high scores table
 - Final UI skin
+- Tooltips
+- Level intro screens
+- Win screen

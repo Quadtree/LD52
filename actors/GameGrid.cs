@@ -467,6 +467,7 @@ public class GameGrid : Spatial
         TubWalls[pos.x, pos.y] = true;
 
         AddToMultimesh("TubWalls", TileToVector(pos));
+        PlayPlacementSound();
     }
 
     public void AddFilterWall(IntVec2 pos)
@@ -478,6 +479,7 @@ public class GameGrid : Spatial
         FilterWalls[pos.x, pos.y] = true;
 
         AddToMultimesh("FilterWalls", TileToVector(pos));
+        PlayPlacementSound();
     }
 
     public void AddPipe(IntVec2 pos)
@@ -493,6 +495,7 @@ public class GameGrid : Spatial
         AddToMultimesh("PipeCenters", TileToVector(pos));
 
         RecomputeFluidNetworks();
+        PlayPlacementSound();
     }
 
     public void AddPump(IntVec2 pos)
@@ -509,6 +512,7 @@ public class GameGrid : Spatial
         AddToMultimesh("PumpStators", TileToVector(pos));
 
         RecomputeFluidNetworks();
+        PlayPlacementSound();
     }
 
     public void AddOutlet(IntVec2 pos)
@@ -524,6 +528,7 @@ public class GameGrid : Spatial
         AddToMultimesh("Outlets", TileToVector(pos));
 
         RecomputeFluidNetworks();
+        PlayPlacementSound();
     }
 
     public void DeletePipe(IntVec2 pos)
@@ -584,6 +589,11 @@ public class GameGrid : Spatial
         DeleteOutlet(pos);
         DeleteWall(pos);
         DeleteFilter(pos);
+    }
+
+    private void PlayPlacementSound()
+    {
+        Util.SpawnOneShotSound("res://sounds/place.wav", this);
     }
 
     private int AddToMultimesh(string subName, Vector3 pos)

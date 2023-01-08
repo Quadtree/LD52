@@ -308,30 +308,35 @@ text = "Placable Selection"
 margin_top = 78.0
 margin_right = 283.0
 margin_bottom = 180.0
+hint_tooltip = "Select this, then click to place tub walls. These can be used to create trays and walls to block or channel fluids."
 text = "Wall"
 
 [node name="PipeButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 220.0
 margin_right = 283.0
 margin_bottom = 322.0
+hint_tooltip = "Carries fluid from pumps to outlets."
 text = "Pipe"
 
 [node name="PumpButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 362.0
 margin_right = 283.0
 margin_bottom = 464.0
+hint_tooltip = "Pumps fluids through pipes to outlets. More pumps increase the rate of transfer."
 text = "Pump"
 
 [node name="OutletButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 504.0
 margin_right = 283.0
 margin_bottom = 606.0
+hint_tooltip = "Fluids moving through pipes exit here. Adding more outlets generally does not increase output speed."
 text = "Outlet "
 
 [node name="FilterButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 646.0
 margin_right = 283.0
 margin_bottom = 748.0
+hint_tooltip = "Like the wall, except red can pass through it."
 text = "Filter "
 
 [node name="Control" type="Control" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2"]
@@ -417,6 +422,7 @@ size_flags_vertical = 3
 margin_top = 740.0
 margin_right = 249.0
 margin_bottom = 842.0
+hint_tooltip = "Click this, then drag over ripe plants to harvest them."
 text = "Harvest"
 script = ExtResource( 18 )
 

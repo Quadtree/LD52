@@ -81,7 +81,7 @@ public class WinLevelDialog : PopupPanel
 
         if (Level.CurrentLevel >= Level.Levels.Length)
         {
-            // @TODO: show final victory screen
+            GetTree().ChangeScene("res://maps/WinScreen.tscn");
         }
         else
         {

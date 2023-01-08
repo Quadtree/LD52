@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://ui/button_hover.tres" type="StyleBox" id=1]
 [ext_resource path="res://ui/button_pressed.tres" type="StyleBox" id=2]
@@ -6,6 +6,15 @@
 [ext_resource path="res://ui/button_focus.tres" type="StyleBox" id=4]
 [ext_resource path="res://ui/dialog_stylebox.tres" type="StyleBox" id=5]
 [ext_resource path="res://ui/button_normal.tres" type="StyleBox" id=6]
+[ext_resource path="res://textures/tooltip.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 249, 250 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
 
 [sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 3 )
@@ -32,4 +41,5 @@ Button/styles/pressed = ExtResource( 2 )
 Dialogs/constants/button_margin = 0
 Dialogs/constants/margin = 0
 PopupDialog/styles/panel = ExtResource( 5 )
+TooltipPanel/styles/panel = SubResource( 8 )
 WindowDialog/styles/panel = SubResource( 7 )

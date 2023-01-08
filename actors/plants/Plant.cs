@@ -31,6 +31,9 @@ public class Plant : Spatial
     public int MaxGrowth;
 
     [Export]
+    public string PlantName;
+
+    [Export]
     public EYieldType YieldType;
 
     public bool Picked;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://ui/ElapsedTime.cs" type="Script" id=14]
 [ext_resource path="res://ui/ItemSelectPanel.cs" type="Script" id=15]
 [ext_resource path="res://ui/RestartLevelButton.cs" type="Script" id=16]
+[ext_resource path="res://ui/PlantSelectionPanel.cs" type="Script" id=17]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -431,25 +432,26 @@ margin_bottom = 1000.0
 margin_right = 249.0
 margin_bottom = 308.0
 custom_constants/separation = 40
+script = ExtResource( 17 )
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
 margin_right = 249.0
 margin_bottom = 38.0
 text = "Plant Selection"
 
-[node name="Button" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
+[node name="Plant0" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
 margin_top = 78.0
 margin_right = 249.0
 margin_bottom = 128.0
 text = "Plant0"
 
-[node name="Button2" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
+[node name="Plant1" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
 margin_top = 168.0
 margin_right = 249.0
 margin_bottom = 218.0
 text = "Plant1"
 
-[node name="Button3" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
+[node name="Plant2" type="Button" parent="UI/HBoxContainer/MarginContainer2/VBoxContainer3/VBoxContainer"]
 margin_top = 258.0
 margin_right = 249.0
 margin_bottom = 308.0

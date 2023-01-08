@@ -1,5 +1,4 @@
 # TODO
-- Make it more obvious when plants are ripe
 - Add tooltips to constructables
 
 # Completed
@@ -28,3 +27,4 @@
 - Pump rotor bug
 - Fluid dynamics bug
 - Make pumps partially run
+- Make it more obvious when plants are ripe

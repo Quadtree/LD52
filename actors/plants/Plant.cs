@@ -53,6 +53,8 @@ public class Plant : Spatial
 
     public bool IsGhost;
 
+    public bool HasRipened;
+
     public enum EYieldType
     {
         FoodLeaf,
@@ -106,6 +108,34 @@ public class Plant : Spatial
             Grid.Fluid[Pos.x, Pos.y, (int)FluidType.Green] += GreenLiquidProducedPerTick;
 
             Scale = Vector3.One * ((Growth / (float)MaxGrowth) * .75f + .25f);
+        }
+
+        if (IsRipe && !HasRipened)
+        {
+            foreach (var it in this.FindChildrenByType<MeshInstance>())
+            {
+                var ns = it.GetSurfaceMaterialCount();
+
+                for (var i = 0; i < ns; ++i)
+                {
+                    var mat = it.GetActiveMaterial(i);
+                    if (mat is SpatialMaterial)
+                    {
+                        var tm = (SpatialMaterial)mat.Duplicate(false);
+
+                        tm.AlbedoColor = new Color(
+                            Util.Clamp(tm.AlbedoColor.r + 0.35f, 0f, 1f),
+                            Util.Clamp(tm.AlbedoColor.g + 0.35f, 0f, 1f),
+                            Util.Clamp(tm.AlbedoColor.b - 0.35f, 0f, 1f),
+                            tm.AlbedoColor.a
+                        );
+
+                        it.SetSurfaceMaterial(i, tm);
+                    }
+                }
+            }
+
+            HasRipened = true;
         }
     }
 

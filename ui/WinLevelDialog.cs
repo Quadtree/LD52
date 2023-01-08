@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Godot;
 using Godot.Collections;
 
@@ -35,6 +36,20 @@ public class WinLevelDialog : PopupPanel
     void RequestCompleted(int result, int responseCode, string[] headers, byte[] body)
     {
         GD.Print($"Got response code {responseCode}");
+
+        var data = JSON.Parse(Encoding.UTF8.GetString(body));
+
+        GD.Print(data.Result?.GetType());
+
+        var resData = (Dictionary)data.Result;
+
+        var scoreArray = (Godot.Collections.Array)resData["scoresForThisLevel"];
+
+        foreach (var rowUntyped in scoreArray)
+        {
+            var row = (Dictionary)rowUntyped;
+            GD.Print($"{row["timeSeconds"]}");
+        }
 
         req.QueueFree();
     }

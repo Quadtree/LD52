@@ -1,4 +1,6 @@
 # TODO
+- Make it more obvious when plants are ripe
+- Add tooltips to constructables
 
 # Completed
 - Winning levels
@@ -25,3 +27,4 @@
 - Consider changing name
 - Pump rotor bug
 - Fluid dynamics bug
+- Make pumps partially run

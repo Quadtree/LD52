@@ -19,6 +19,10 @@ public class PlantSelectionPanel : VBoxContainer
                     {
                         this.FindChildByName<Button>($"Plant{i}").Visible = false;
                     }
+                    else
+                    {
+                        this.FindChildByName<Button>($"Plant{i}").Text = GD.Load<PackedScene>(grid.Level.AvailablePlantTypes[i]).Instance<Plant>().PlantName;
+                    }
                 }
             }
         }

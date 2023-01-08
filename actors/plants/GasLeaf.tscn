@@ -18,6 +18,7 @@ RedGasProducedPerTick = 100
 BlueGasProducedPerTick = 200
 MaxRedTolerancePerMili = 75
 MaxGrowth = 1500
+PlantName = "Gaspod"
 YieldType = 2
 
 [node name="MeshInstance" parent="." index="0"]

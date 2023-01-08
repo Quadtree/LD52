@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://models/BackGlass.material" type="Material" id=5]
 [ext_resource path="res://models/BlockMaterial.material" type="Material" id=6]
 [ext_resource path="res://models/pipe.glb" type="PackedScene" id=7]
+[ext_resource path="res://models/outlet.glb" type="PackedScene" id=8]
+[ext_resource path="res://models/junction.glb" type="PackedScene" id=9]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -169,6 +171,9 @@ multimesh = SubResource( 18 )
 [node name="PipeCenters" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 10 )
 
+[node name="junction" parent="GameGrid/PipeCenters" instance=ExtResource( 9 )]
+visible = false
+
 [node name="Pipes" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 25 )
 
@@ -180,6 +185,9 @@ multimesh = SubResource( 13 )
 
 [node name="Outlets" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 15 )
+
+[node name="outlet" parent="GameGrid/Outlets" instance=ExtResource( 8 )]
+visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="GameGrid"]
 visible = false

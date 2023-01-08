@@ -384,12 +384,13 @@ public class GameGrid : Spatial
             GD.Print($"ns={ns}");
             for (var i = 0; i < ns; ++i)
             {
-                var mat = it.GetSurfaceMaterial(i);
+                var mat = it.Mesh.SurfaceGetMaterial(i);
 
                 if (mat is SpatialMaterial)
                 {
                     var nMat = (SpatialMaterial)mat.Duplicate(false);
-                    nMat.AlbedoColor = new Color(nMat.AlbedoColor.r, nMat.AlbedoColor.g, nMat.AlbedoColor.b, 0.5f);
+                    nMat.AlbedoColor = new Color(nMat.AlbedoColor.r, nMat.AlbedoColor.g, nMat.AlbedoColor.b, 0.1f);
+                    nMat.FlagsTransparent = true;
                     it.SetSurfaceMaterial(i, mat);
                     GD.Print("Replacing surface material");
                 }

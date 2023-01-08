@@ -155,6 +155,17 @@ public class GameGrid : Spatial
         //     Input.SetCustomMouseCursor(null);
         // }
 
+        if (GetTree().Root.FindChildByName<AudioStreamPlayer>("BGM") == null)
+        {
+            var bgm = new AudioStreamPlayer();
+            bgm.Name = "BGM";
+            GetTree().Root.AddChild(bgm);
+            bgm.VolumeDb = -10;
+            bgm.Stream = GD.Load<AudioStream>("res://sounds/bgm.ogg");
+            bgm.Play();
+        }
+
+
         var sickle = GetTree().CurrentScene.FindChildByName<Spatial>("SickleRoot");
 
         if (PlaceableSelected == Placables.Harvest)

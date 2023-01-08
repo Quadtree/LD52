@@ -41,6 +41,15 @@ public class GameGrid : Spatial
 
     public override void _Ready()
     {
+        foreach (var it in this.FindChildrenByType<MultiMeshInstance>())
+        {
+            var meshInstanceChildren = it.FindChildrenByType<MeshInstance>().ToArray();
+            if (meshInstanceChildren.Length == 1 && meshInstanceChildren[0].Visible == false)
+            {
+                it.Multimesh.Mesh = meshInstanceChildren[0].Mesh;
+            }
+        }
+
         var tw = this.FindChildByName<MultiMeshInstance>("TubWalls");
         tw.Multimesh.InstanceCount = WIDTH * HEIGHT;
         tw.Multimesh.VisibleInstanceCount = 0;

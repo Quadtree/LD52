@@ -604,7 +604,7 @@ public class GameGrid : Spatial
 
     private void PlayPlacementSound()
     {
-        if (Running) Util.SpawnOneShotSound("res://sounds/place.wav", this, -10);
+        if (Running) Util.SpawnOneShotSound("res://sounds/place2.wav", this, -10);
     }
 
     private void PlayDestroySound()
@@ -787,6 +787,8 @@ public class GameGrid : Spatial
         GetTree().CurrentScene.AddChild(plantInstance);
         plantInstance.Reposition(this, pos);
         plantInstance.SourceFile = plant;
+
+        if (Running) PlayPlacementSound();
 
         return true;
     }

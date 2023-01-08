@@ -132,6 +132,6 @@ public class Plant : Spatial
 
         Grid.CheckWinConditions();
 
-        Util.SpawnOneShotSound("res://sounds/harvest1.wav", this);
+        Util.SpawnOneShotSound("res://sounds/harvest1.wav", this, -5);
     }
 }

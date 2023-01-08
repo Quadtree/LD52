@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://models/outlet.glb" type="PackedScene" id=8]
 [ext_resource path="res://models/junction.glb" type="PackedScene" id=9]
 [ext_resource path="res://models/pump_rotor.glb" type="PackedScene" id=10]
+[ext_resource path="res://models/pump_stator.glb" type="PackedScene" id=11]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -185,6 +186,13 @@ visible = false
 multimesh = SubResource( 13 )
 
 [node name="pump_rotor" parent="GameGrid/Pumps" instance=ExtResource( 10 )]
+visible = false
+
+[node name="PumpStators" type="MultiMeshInstance" parent="GameGrid"]
+multimesh = SubResource( 13 )
+
+[node name="pump_stator" parent="GameGrid/PumpStators" instance=ExtResource( 11 )]
+visible = false
 
 [node name="Outlets" type="MultiMeshInstance" parent="GameGrid"]
 multimesh = SubResource( 15 )

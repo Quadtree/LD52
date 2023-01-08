@@ -1,5 +1,4 @@
 # TODO
-- Keeping track of time and stuff collected on levels
 - Final graphics
 - Proper UI
 - Win screen
@@ -12,3 +11,4 @@
 # Completed
 - Winning levels
 - High scores table
+- Keeping track of time and stuff collected on levels

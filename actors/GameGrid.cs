@@ -5,7 +5,7 @@ using Godot;
 
 public class GameGrid : Spatial
 {
-    Placables? PlaceableSelected;
+    public Placables? PlaceableSelected;
 
     bool Placing = false;
     bool Destroying = false;
@@ -374,7 +374,7 @@ public class GameGrid : Spatial
         SetPlacementGhost(plantType);
     }
 
-    private void SetPlacementGhost(string srcName)
+    public void SetPlacementGhost(string srcName)
     {
         if (PlacementGhost != null) PlacementGhost.QueueFree();
 

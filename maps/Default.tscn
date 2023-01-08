@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://actors/GameGrid.cs" type="Script" id=1]
 [ext_resource path="res://textures/tile1.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://models/filter.glb" type="PackedScene" id=12]
 [ext_resource path="res://ui/ObjectiveStatus.cs" type="Script" id=13]
 [ext_resource path="res://ui/ElapsedTime.cs" type="Script" id=14]
+[ext_resource path="res://ui/ItemSelectPanel.cs" type="Script" id=15]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -345,37 +346,38 @@ custom_constants/separation = 20
 margin_right = 283.0
 margin_bottom = 488.0
 custom_constants/separation = 40
+script = ExtResource( 15 )
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_right = 283.0
 margin_bottom = 38.0
 text = "Placable Selection"
 
-[node name="Button" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="WallButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 78.0
 margin_right = 283.0
 margin_bottom = 128.0
 text = "Wall"
 
-[node name="Button2" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="PipeButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 168.0
 margin_right = 283.0
 margin_bottom = 218.0
 text = "Pipe"
 
-[node name="Button3" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="PumpButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 258.0
 margin_right = 283.0
 margin_bottom = 308.0
 text = "Pump"
 
-[node name="Button4" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="OutletButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 348.0
 margin_right = 283.0
 margin_bottom = 398.0
 text = "Outlet "
 
-[node name="Button5" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="FilterButton" type="Button" parent="UI/HBoxContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 438.0
 margin_right = 283.0
 margin_bottom = 488.0

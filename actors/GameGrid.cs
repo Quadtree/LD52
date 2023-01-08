@@ -315,10 +315,8 @@ public class GameGrid : Spatial
         }
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
-        base._UnhandledInput(@event);
-
         if (@event.IsActionPressed("place_item"))
         {
             Placing = true;

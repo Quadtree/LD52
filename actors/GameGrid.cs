@@ -81,7 +81,7 @@ public class GameGrid : Spatial
         {
             for (var x = 0; x < WIDTH + 2; ++x)
             {
-                if (x == 0 && y == 0)
+                if ((x == 0 && y == 0) || (x == 0 && y == HEIGHT + 1) || (x == WIDTH + 1 && y == HEIGHT + 1) || (x == WIDTH + 1 && y == 0))
                 {
                     backWall.Multimesh.SetInstanceTransform(x + y * (WIDTH + 2), new Transform(Quat.Identity, new Vector3(-1000, -1000, 0)));
                 }

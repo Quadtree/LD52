@@ -1,5 +1,6 @@
 # TODO
 - Placement ghost
+- Headroom for plants
 - Final graphics
   - Foodleaf
   - Bitterleaf

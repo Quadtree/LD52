@@ -9,6 +9,7 @@ GreenUsedPerTick = 100
 BlueUsedPerTick = 500
 MaxGrowth = 900
 PlantName = "Foodleaf"
+PlantDesc = "Consumes a lot of water and a little green to produce tasty food."
 
 [node name="MeshInstance" parent="." index="0"]
 visible = false

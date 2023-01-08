@@ -19,6 +19,7 @@ BlueGasProducedPerTick = 200
 MaxRedTolerancePerMili = 75
 MaxGrowth = 1500
 PlantName = "Gaspod"
+PlantDesc = "Consumes a large amount of water to produce red gas."
 YieldType = 2
 
 [node name="MeshInstance" parent="." index="0"]

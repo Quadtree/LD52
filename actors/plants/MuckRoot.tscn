@@ -20,6 +20,7 @@ GreenLiquidProducedPerTick = 100
 MaxRedTolerancePerMili = 100000
 MaxGrowth = 3000
 PlantName = "Muckroot"
+PlantDesc = "Consumes water and red to produce green."
 YieldType = 2
 
 [node name="MeshInstance" parent="." index="0"]

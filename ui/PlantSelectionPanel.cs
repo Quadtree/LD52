@@ -22,6 +22,7 @@ public class PlantSelectionPanel : VBoxContainer
                     else
                     {
                         this.FindChildByName<Button>($"Plant{i}").Text = GD.Load<PackedScene>(grid.Level.AvailablePlantTypes[i]).Instance<Plant>().PlantName;
+                        this.FindChildByName<Button>($"Plant{i}").HintTooltip = GD.Load<PackedScene>(grid.Level.AvailablePlantTypes[i]).Instance<Plant>().PlantDesc;
 
                         this.FindChildByName<Button>($"Plant{i}").Connect("pressed", this, $"Pressed{i}");
                     }

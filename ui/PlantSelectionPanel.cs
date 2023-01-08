@@ -24,10 +24,10 @@ public class PlantSelectionPanel : VBoxContainer
                         this.FindChildByName<Button>($"Plant{i}").Text = GD.Load<PackedScene>(grid.Level.AvailablePlantTypes[i]).Instance<Plant>().PlantName;
 
                         this.FindChildByName<Button>($"Plant{i}").Connect("pressed", this, $"Pressed{i}");
-
-
                     }
                 }
+
+                InitDone = true;
             }
         }
     }

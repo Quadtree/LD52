@@ -3,7 +3,6 @@ import * as AWS from '@aws-sdk/client-s3';
 const s3 = new AWS.S3({ region: "us-west-2" });
 
 const BUCKET_NAME = "ld52-scores982347347834";
-const KEY_NAME = "scores.json";
 
 
 export const handler = async (event) => {
@@ -21,10 +20,15 @@ export const handler = async (event) => {
 
     console.log(s3.getObject);
 
+    const keyName = `${incomingData.level}.json`;
+
+    if (/[^A-Za-z0-9_.]/.exec(keyName)) throw new Error();
+    if (keyName.length > 20) throw new Error();
+
     try {
         const response = await s3.getObject({
             Bucket: BUCKET_NAME,
-            Key: KEY_NAME,
+            Key: keyName,
         });
         const rawText = await response.Body.toArray();
         console.log(rawText);
@@ -39,7 +43,7 @@ export const handler = async (event) => {
 
     await s3.putObject({
         Bucket: BUCKET_NAME,
-        Key: KEY_NAME,
+        Key: keyName,
         Body: JSON.stringify(object),
     });
 

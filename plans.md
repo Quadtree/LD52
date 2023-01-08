@@ -1,9 +1,6 @@
 # TODO
-- Background
 - Sound
 - Music
-- Try to figure out why the button on the win level dialog is wrong...
-
 
 # Completed
 - Winning levels
@@ -23,3 +20,5 @@
 - Level intro screens
 - Win screen
 - Main menu
+- Background
+- Try to figure out why the button on the win level dialog is wrong...

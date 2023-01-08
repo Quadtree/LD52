@@ -1,5 +1,4 @@
 # TODO
-- Headroom for plants
 - Proper UI
 - Win screen
 - Main menu
@@ -18,3 +17,4 @@
   - Muckroot
   - Gasleaf
 - Placement ghost
+- Headroom for plants

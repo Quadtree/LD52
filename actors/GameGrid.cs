@@ -26,6 +26,7 @@ public class GameGrid : Spatial
     bool[,] Outlet = new bool[WIDTH, HEIGHT];
 
     int[,] PumpRotorToInstanceIdMapping = new int[WIDTH, HEIGHT];
+    float[,] PumpRotorRotation = new float[WIDTH, HEIGHT];
 
     public int[] GasLevels = new int[FluidNetwork.NUM_FLUID_TYPES];
 
@@ -691,13 +692,10 @@ public class GameGrid : Spatial
     public void RotatePump(IntVec2 pos, float rads)
     {
         var instId = PumpRotorToInstanceIdMapping[pos.x, pos.y];
+        PumpRotorRotation[pos.x, pos.y] += rads;
 
         var mmi = this.FindChildByName<MultiMeshInstance>("Pumps");
 
-        var curTransform = mmi.Multimesh.GetInstanceTransform(instId);
-
-        var newTransform = curTransform.Rotated(Vector3.Forward, rads);
-
-        mmi.Multimesh.SetInstanceTransform(instId, newTransform);
+        mmi.Multimesh.SetInstanceTransform(instId, new Transform(new Quat(new Vector3(0, 0, PumpRotorRotation[pos.x, pos.y])), TileToVector(pos)));
     }
 }

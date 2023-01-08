@@ -389,7 +389,7 @@ public class GameGrid : Spatial
                 if (mat is SpatialMaterial)
                 {
                     var nMat = (SpatialMaterial)mat.Duplicate(false);
-                    nMat.AlbedoColor = new Color(nMat.AlbedoColor.r, 0, nMat.AlbedoColor.b, 0.1f);
+                    nMat.AlbedoColor = new Color(nMat.AlbedoColor.r, nMat.AlbedoColor.g, nMat.AlbedoColor.b, 0.3f);
                     nMat.VertexColorUseAsAlbedo = false;
                     nMat.FlagsTransparent = true;
 

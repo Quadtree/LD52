@@ -334,8 +334,8 @@ public class GameGrid : Spatial
         if (@event.IsActionPressed("select_item_2")) { PlaceableSelected = Placables.Pump; SetPlacementGhost("res://models/pump_rotor.glb"); }
         if (@event.IsActionPressed("select_item_3")) { PlaceableSelected = Placables.Outlet; SetPlacementGhost("res://models/outlet.glb"); }
         if (@event.IsActionPressed("select_item_4")) { PlaceableSelected = Placables.Plant0; SetPlacementGhostForPlant(0); }
-        if (@event.IsActionPressed("select_item_5")) { PlaceableSelected = Placables.Plant1; SetPlacementGhostForPlant(0); }
-        if (@event.IsActionPressed("select_item_6")) { PlaceableSelected = Placables.Plant2; SetPlacementGhostForPlant(0); }
+        if (@event.IsActionPressed("select_item_5") && Level.AvailablePlantTypes.Length >= 2) { PlaceableSelected = Placables.Plant1; SetPlacementGhostForPlant(0); }
+        if (@event.IsActionPressed("select_item_6") && Level.AvailablePlantTypes.Length >= 3) { PlaceableSelected = Placables.Plant2; SetPlacementGhostForPlant(0); }
         if (@event.IsActionPressed("select_filter") && Level.AllowFilter) { PlaceableSelected = Placables.Filter; }
         if (@event.IsActionPressed("select_harvest")) PlaceableSelected = Placables.Harvest;
 
@@ -369,7 +369,7 @@ public class GameGrid : Spatial
 
     private void SetPlacementGhostForPlant(int plantId)
     {
-
+        var plantType = Level.AvailablePlantTypes[plantId];
     }
 
     private void SetPlacementGhost(string srcName)
